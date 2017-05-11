@@ -5,6 +5,8 @@ package sample;
  */
 public class Missile extends Actor {
 
+    int dx = 3;
+
     @Override
     public void act(long now) {
 
