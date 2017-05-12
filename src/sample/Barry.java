@@ -7,6 +7,6 @@ public class Barry extends Actor {
 
     @Override
     public void act(long now) {
-
+        move(getDx(), getDy());
     }
 }

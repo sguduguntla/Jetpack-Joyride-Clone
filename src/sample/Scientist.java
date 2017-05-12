@@ -6,7 +6,7 @@ package sample;
 public class Scientist extends Actor {
 
     @Override
-    void act(long now) {
+    public void act(long now) {
 
     }
 }
