@@ -45,6 +45,14 @@ public class Main extends Application {
             }
         });
 
+        barry.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                barry.setDx(0);
+                barry.setDy(0);
+            }
+        });
+
         barry.setImage(new Image("file:img/barry.png"));
 
         world.add(barry);
