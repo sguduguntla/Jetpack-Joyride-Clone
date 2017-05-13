@@ -23,7 +23,6 @@ public class Main extends Application {
             }
         };
 
-
         Barry barry = new Barry();
 
         barry.setOnKeyPressed(new EventHandler<KeyEvent>() {

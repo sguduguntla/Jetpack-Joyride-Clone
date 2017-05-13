@@ -9,7 +9,7 @@ public class Stomper extends Actor implements Powerup {
 
     @Override
     public void act(long now) {
-
+        move(getDx(), getDy());
     }
 
     @Override

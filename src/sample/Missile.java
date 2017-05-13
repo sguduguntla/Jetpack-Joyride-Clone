@@ -5,10 +5,10 @@ package sample;
  */
 public class Missile extends Actor {
 
-    int dx = 3;
+    int dx = -7;
 
     @Override
     public void act(long now) {
-
+        move(dx, 0);
     }
 }
