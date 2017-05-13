@@ -30,16 +30,16 @@ public class Main extends Application {
             @Override
             public void handle(KeyEvent e) {
                 if (e.getCode() == KeyCode.W) {
-                    barry.setDy(-3);
+                    barry.setDy(-5);
                     barry.setDx(0);
                 } else if (e.getCode() == KeyCode.A) {
                     barry.setDy(0);
-                    barry.setDx(-3);
+                    barry.setDx(-5);
                 } else if (e.getCode() == KeyCode.D) {
                     barry.setDy(0);
-                    barry.setDx(3);
+                    barry.setDx(5);
                 } else if (e.getCode() == KeyCode.S) {
-                    barry.setDy(3);
+                    barry.setDy(5);
                     barry.setDx(0);
                 }
             }
