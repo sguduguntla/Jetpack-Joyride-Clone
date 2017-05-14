@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1646027e-14c1-46c8-b863-b524e7d20b75" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Actor.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Actor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main$1.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main$2.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Missile.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Missile.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Stomper.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Stomper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Zapper.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Zapper.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Actor.java" afterPath="$PROJECT_DIR$/src/sample/Actor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Main.java" afterPath="$PROJECT_DIR$/src/sample/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Missile.java" afterPath="$PROJECT_DIR$/src/sample/Missile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Zapper.java" afterPath="$PROJECT_DIR$/src/sample/Zapper.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,11 +19,11 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="114" column="26" lean-forward="true" selection-start-line="114" selection-start-column="26" selection-end-line="114" selection-end-column="26" />
+            <state relative-caret-position="252">
+              <caret line="59" column="27" lean-forward="false" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1494793472885" expanded="true" signature="2302:2788" ph="..." />
+                <marker date="1494797853117" expanded="true" signature="3091:3577" ph="..." />
               </folding>
             </state>
           </provider>
@@ -555,7 +545,14 @@
       <option name="project" value="LOCAL" />
       <updated>1494655068386</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Implement the Zapper and Missile classes with timers">
+      <created>1494795619375</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1494795619376</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -575,7 +572,7 @@
       <window_info id="Run Dashboard" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.50296295" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36006546" sideWeight="0.49703702" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36006546" sideWeight="0.49703702" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -610,7 +607,8 @@
     <MESSAGE value="Added onKeyReleased() event handler to prevent Barry from moving when a directional key is not pressed." />
     <MESSAGE value="Change Barry's speed to make the game more fast-paced" />
     <MESSAGE value="Add basic act move functions to each actor subclass" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add basic act move functions to each actor subclass" />
+    <MESSAGE value="Implement the Zapper and Missile classes with timers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement the Zapper and Missile classes with timers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -627,7 +625,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1494793472885" expanded="true" signature="2302:2788" ph="..." />
+            <marker date="1494797853117" expanded="true" signature="3091:3577" ph="..." />
           </folding>
         </state>
       </provider>
@@ -670,7 +668,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1494793472885" expanded="true" signature="2302:2788" ph="..." />
+            <marker date="1494797853117" expanded="true" signature="3091:3577" ph="..." />
           </folding>
         </state>
       </provider>
@@ -751,7 +749,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1494793472885" expanded="true" signature="2302:2788" ph="..." />
+            <marker date="1494797853117" expanded="true" signature="3091:3577" ph="..." />
           </folding>
         </state>
       </provider>
@@ -832,7 +830,7 @@
           <caret line="80" column="21" lean-forward="true" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1494793472885" expanded="true" signature="2302:2788" ph="..." />
+            <marker date="1494797853117" expanded="true" signature="3091:3577" ph="..." />
           </folding>
         </state>
       </provider>
@@ -894,7 +892,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1494793472885" expanded="true" signature="2302:2788" ph="..." />
+            <marker date="1494797853117" expanded="true" signature="3091:3577" ph="..." />
           </folding>
         </state>
       </provider>
@@ -977,17 +975,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Barry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="e#143#144#0" expanded="true" />
-            <element signature="e#181#182#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Zapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -997,17 +984,6 @@
             <element signature="e#221#222#0" expanded="true" />
             <element signature="e#336#337#0" expanded="true" />
             <element signature="e#358#359#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Actor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#5800#0" expanded="true" />
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1033,13 +1009,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Actor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#5800#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Barry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="e#143#144#0" expanded="true" />
+            <element signature="e#181#182#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="114" column="26" lean-forward="true" selection-start-line="114" selection-start-column="26" selection-end-line="114" selection-end-column="26" />
+        <state relative-caret-position="252">
+          <caret line="59" column="27" lean-forward="false" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1494793472885" expanded="true" signature="2302:2788" ph="..." />
+            <marker date="1494797853117" expanded="true" signature="3091:3577" ph="..." />
           </folding>
         </state>
       </provider>
