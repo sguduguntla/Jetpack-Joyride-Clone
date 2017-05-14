@@ -54,6 +54,11 @@ public abstract class Actor extends ImageView {
         setY(getY() + dy);
     }
 
+    public void setLocation(double x, double y) {
+        setX(x);
+        setY(y);
+    }
+
     public <A extends Actor> List<A> getIntersectingObjects(Class<A> cls) {
         List<A> intersectingActors =  new ArrayList<A>();
 
