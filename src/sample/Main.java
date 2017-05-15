@@ -66,8 +66,17 @@ public class Main extends Application {
             @Override
             public void handle(KeyEvent e) {
                 if (e.getCode() == KeyCode.W) {
-                    barry.setDy(-(5 + tempDy));
-                    tempDy += 2;
+                    if (barry.getY() < 0){
+                        barry.setDy(0);
+                        barry.setLocation(barry.getX(), 0);
+                    } else if (barry.getY() > WORLD_HEIGHT - 82){
+                        barry.setDy(0);
+                        //barry.setLocation(barry.getX(), WORLD_HEIGHT - 83);
+                    } else {
+//                        barry.setDy(-(5 + tempDy));
+//                        tempDy += 2;
+                        barry.setDy(-7);
+                    }
                     barry.setDx(0);
 //                } else if (e.getCode() == KeyCode.A) {
 //                    barry.setDy(0);
@@ -75,10 +84,15 @@ public class Main extends Application {
 //                } else if (e.getCode() == KeyCode.D) {
 //                    barry.setDy(0);
 //                    barry.setDx(5);
-                } else if (e.getCode() == KeyCode.S) {
-                    barry.setDy(5);
-                    barry.setDx(0);
+//                } else if (e.getCode() == KeyCode.S) {
+//                    //do nothing
                 }
+//                if (barry.getY() > WORLD_HEIGHT - 82){
+//                    barry.setDy(0);
+//                    barry.setLocation(barry.getX(), WORLD_HEIGHT - 82);
+//                } else {
+//                    barry.setDy(7);
+//                }
             }
         });
 
@@ -86,8 +100,14 @@ public class Main extends Application {
             @Override
             public void handle(KeyEvent event) {
                 barry.setDx(0);
+//                if (barry.getY() > WORLD_HEIGHT){
+//                    barry.setDy(0);
+//                    barry.setLocation(barry.getX(), WORLD_HEIGHT - 82);
+//                } else {
+//                    barry.setDy(7);
+//                }
                 barry.setDy(7);
-                tempDy = 0;
+                //tempDy = 0;
             }
         });
 
@@ -99,6 +119,11 @@ public class Main extends Application {
         world.add(zapper);
         world.add(missile);
 
+        Timeline boundaryCheckerTimeline = new Timeline(new KeyFrame(
+                Duration.millis(10),
+                ae -> boundarycheck()));
+        boundaryCheckerTimeline.setCycleCount(Animation.INDEFINITE);
+        boundaryCheckerTimeline.play();
 
         Timeline zapperTimeline = new Timeline(new KeyFrame(
                 Duration.millis(2000),
@@ -119,6 +144,17 @@ public class Main extends Application {
         stage.setScene(scene);
 
         stage.show();
+    }
+
+    public void boundarycheck(){
+        if (barry.getY() > WORLD_HEIGHT - 82) {
+            barry.setDy(0);
+            barry.setLocation(barry.getX(), WORLD_HEIGHT - 82);
+        }
+        if (barry.getY() < 0) {
+            barry.setDy(0);
+            barry.setLocation(barry.getX(), 0);
+        }
     }
 
     public void shootMissile(){
