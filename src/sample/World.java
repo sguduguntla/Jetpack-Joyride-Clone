@@ -124,9 +124,7 @@ public abstract class World extends Pane {
 
     public <A extends Actor> List<A> getObjects(Class<A> cls) {
         List<A> actors = new ArrayList<A>();
-
-        System.out.println(this.getChildren().size());
-
+        
         for (Node node: this.getChildren()) {
             if (cls.isInstance(node)) {
                 actors.add(cls.cast(node));

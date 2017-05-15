@@ -17,8 +17,8 @@ import javafx.util.Duration;
 
 public class Main extends Application {
 
-    private double WORLD_WIDTH = 600;
-    private double WORLD_HEIGHT = 600;
+    private double WORLD_WIDTH = Screen.getPrimary().getVisualBounds().getWidth();
+    private double WORLD_HEIGHT = Screen.getPrimary().getVisualBounds().getHeight();
 
     Scientist scientist;
     Missile missile;
@@ -43,16 +43,16 @@ public class Main extends Application {
 
         Scene scene = new Scene(world, WORLD_WIDTH, WORLD_HEIGHT);
 
-        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+//        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+//
+//        //set Stage boundaries to visible bounds of the main screen
+//        stage.setX(primaryScreenBounds.getMinX());
+//        stage.setY(primaryScreenBounds.getMinY());
+//        stage.setWidth(primaryScreenBounds.getWidth());
+//        stage.setHeight(primaryScreenBounds.getHeight());
 
-        //set Stage boundaries to visible bounds of the main screen
-        stage.setX(primaryScreenBounds.getMinX());
-        stage.setY(primaryScreenBounds.getMinY());
-        stage.setWidth(primaryScreenBounds.getWidth());
-        stage.setHeight(primaryScreenBounds.getHeight());
-
-        WORLD_WIDTH = primaryScreenBounds.getWidth();
-        WORLD_HEIGHT = primaryScreenBounds.getHeight();
+//        WORLD_WIDTH = primaryScreenBounds.getWidth();
+//        WORLD_HEIGHT = primaryScreenBounds.getHeight();
 
         scoreLabel = new Label("Score: " + score);
         barry = new Barry();
