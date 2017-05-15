@@ -1,10 +1,5 @@
 package sample;
 
-import javafx.scene.image.Image;
-
-/**
- * Created by sguduguntla on 5/11/17.
- */
 public class Zapper extends Actor {
 
     int dx = 0;

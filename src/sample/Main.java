@@ -14,20 +14,15 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-//import javax.management.timer.Timer;
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class Main extends Application {
 
     private double WORLD_WIDTH = 600;
     private double WORLD_HEIGHT = 600;
 
-    Timer zapperTimer = new Timer();
     Missile missile;
     Barry barry;
     Zapper zapper;
-    int tempDy = 0;
+//    int tempDy = 0;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -68,31 +63,15 @@ public class Main extends Application {
                 if (e.getCode() == KeyCode.W) {
                     if (barry.getY() < 0){
                         barry.setDy(0);
-                        barry.setLocation(barry.getX(), 0);
                     } else if (barry.getY() > WORLD_HEIGHT - 82){
                         barry.setDy(0);
-                        //barry.setLocation(barry.getX(), WORLD_HEIGHT - 83);
                     } else {
 //                        barry.setDy(-(5 + tempDy));
 //                        tempDy += 2;
                         barry.setDy(-7);
                     }
                     barry.setDx(0);
-//                } else if (e.getCode() == KeyCode.A) {
-//                    barry.setDy(0);
-//                    barry.setDx(-5);
-//                } else if (e.getCode() == KeyCode.D) {
-//                    barry.setDy(0);
-//                    barry.setDx(5);
-//                } else if (e.getCode() == KeyCode.S) {
-//                    //do nothing
                 }
-//                if (barry.getY() > WORLD_HEIGHT - 82){
-//                    barry.setDy(0);
-//                    barry.setLocation(barry.getX(), WORLD_HEIGHT - 82);
-//                } else {
-//                    barry.setDy(7);
-//                }
             }
         });
 
@@ -100,12 +79,6 @@ public class Main extends Application {
             @Override
             public void handle(KeyEvent event) {
                 barry.setDx(0);
-//                if (barry.getY() > WORLD_HEIGHT){
-//                    barry.setDy(0);
-//                    barry.setLocation(barry.getX(), WORLD_HEIGHT - 82);
-//                } else {
-//                    barry.setDy(7);
-//                }
                 barry.setDy(7);
                 //tempDy = 0;
             }
@@ -136,8 +109,6 @@ public class Main extends Application {
                 ae -> shootMissile()));
         missileTimeline.setCycleCount(Animation.INDEFINITE);
         missileTimeline.play();
-//
-//        timeline.stop();
 
         world.start();
 
@@ -152,8 +123,8 @@ public class Main extends Application {
             barry.setLocation(barry.getX(), WORLD_HEIGHT - 82);
         }
         if (barry.getY() < 0) {
-            barry.setDy(0);
-            barry.setLocation(barry.getX(), 0);
+            //barry.setDy(7);
+            barry.setLocation(barry.getX(), 1);
         }
     }
 

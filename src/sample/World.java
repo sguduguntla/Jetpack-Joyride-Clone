@@ -12,9 +12,6 @@ import javafx.scene.layout.Pane;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by sguduguntla on 3/30/17.
- */
 public abstract class World extends Pane {
 
     private AnimationTimer timer;

@@ -3,9 +3,6 @@ package sample;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by sguduguntla on 5/11/17.
- */
 public class CoinGroup {
 
     private List<Coin> coins;

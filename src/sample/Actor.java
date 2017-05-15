@@ -1,5 +1,3 @@
-//package sample;
-//
 package sample;
 
 import javafx.scene.image.ImageView;
@@ -7,9 +5,6 @@ import javafx.scene.image.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by sguduguntla on 3/30/17.
- */
 public abstract class Actor extends ImageView {
 
     private int dx;
