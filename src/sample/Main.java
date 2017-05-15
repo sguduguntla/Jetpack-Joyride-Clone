@@ -5,7 +5,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -43,29 +42,24 @@ public class Main extends Application {
 
         Scene scene = new Scene(world, WORLD_WIDTH, WORLD_HEIGHT);
 
-//        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-//
-//        //set Stage boundaries to visible bounds of the main screen
-//        stage.setX(primaryScreenBounds.getMinX());
-//        stage.setY(primaryScreenBounds.getMinY());
-//        stage.setWidth(primaryScreenBounds.getWidth());
-//        stage.setHeight(primaryScreenBounds.getHeight());
-
-//        WORLD_WIDTH = primaryScreenBounds.getWidth();
-//        WORLD_HEIGHT = primaryScreenBounds.getHeight();
-
         scoreLabel = new Label("Score: " + score);
         barry = new Barry();
         zapper = new Zapper();
         missile = new Missile();
         group = new CoinGroup();
+
         for (int i = 0; i < 60; i++) {
             group.add(new Coin());
         }
-        barry.setLocation(80, WORLD_HEIGHT - 82);
+
+        barry.setImage(new Image("file:img/barry.png"));
+        zapper.setImage(new Image("file:img/zapper.png"));
+        missile.setImage(new Image("file:img/missile.png"));
+
+        System.out.println(barry.getHeight());
+        barry.setLocation(80, WORLD_HEIGHT - barry.getFitHeight());
         zapper.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
         missile.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
-
 
         barry.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -73,7 +67,7 @@ public class Main extends Application {
                 if (e.getCode() == KeyCode.W) {
                     if (barry.getY() < 0){
                         barry.setDy(0);
-                    } else if (barry.getY() > WORLD_HEIGHT - 82){
+                    } else if (barry.getY() > WORLD_HEIGHT - barry.getHeight() * 2){
                         barry.setDy(0);
                     } else {
 //                        barry.setDy(-(5 + tempDy));
@@ -88,19 +82,15 @@ public class Main extends Application {
         barry.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                barry.setDx(0);
                 barry.setDy(7);
                 //tempDy = 0;
             }
         });
 
-        barry.setImage(new Image("file:img/barry.png"));
-        zapper.setImage(new Image("file:img/zapper.png"));
-        missile.setImage(new Image("file:img/missile.png"));
-
         world.add(barry);
         world.add(zapper);
         world.add(missile);
+
         for (int i = 0; i < 60; i++) {
             world.add(group.get(i));
         }
@@ -146,9 +136,9 @@ public class Main extends Application {
     }
 
     public void boundarycheck(){
-        if (barry.getY() > WORLD_HEIGHT - 82) {
+        if (barry.getY() > WORLD_HEIGHT - barry.getHeight() * 2) {
             barry.setDy(0);
-            barry.setLocation(barry.getX(), WORLD_HEIGHT - 82);
+            barry.setLocation(barry.getX(), WORLD_HEIGHT - barry.getHeight() * 2);
         }
         if (barry.getY() < 0) {
             //barry.setDy(7);
