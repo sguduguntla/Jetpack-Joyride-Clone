@@ -7,26 +7,26 @@ import java.util.List;
 
 public abstract class Actor extends ImageView {
 
-    private int dx;
-    private int dy;
+    private double dx;
+    private double dy;
 
     public Actor() {
 
     }
 
-    public void setDx(int dx) {
+    public void setDx(double dx) {
         this.dx = dx;
     }
 
-    public void setDy(int dy) {
+    public void setDy(double dy) {
         this.dy = dy;
     }
 
-    public int getDx() {
+    public double getDx() {
         return dx;
     }
 
-    public int getDy() {
+    public double getDy() {
         return dy;
     }
 

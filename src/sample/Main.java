@@ -56,33 +56,42 @@ public class Main extends Application {
         zapper.setImage(new Image("file:img/zapper.png"));
         missile.setImage(new Image("file:img/missile.png"));
 
-        System.out.println(barry.getHeight());
-        barry.setLocation(80, WORLD_HEIGHT - barry.getFitHeight());
+        barry.setLocation(80, WORLD_HEIGHT - barry.getHeight());
         zapper.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
         missile.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
 
         barry.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+            double dy = barry.getDy();
+
             @Override
             public void handle(KeyEvent e) {
                 if (e.getCode() == KeyCode.W) {
+                    barry.setFalling(false);
                     if (barry.getY() < 0){
-                        barry.setDy(0);
+                        //dy = 0;
                     } else if (barry.getY() > WORLD_HEIGHT - barry.getHeight() * 2){
-                        barry.setDy(0);
+                        //dy = 0;
                     } else {
-//                        barry.setDy(-(5 + tempDy));
-//                        tempDy += 2;
-                        barry.setDy(-7);
+////                        barry.setDy(-(5 + tempDy));
+////                        tempDy += 2;
+//                        dy = -7;
                     }
-                    barry.setDx(0);
+
+                    barry.setDy(dy);
                 }
             }
         });
 
+
         barry.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            double dy = barry.getDy();
+
             @Override
             public void handle(KeyEvent event) {
-                barry.setDy(7);
+                barry.setFalling(true);
+                barry.setDy(-4);
+
                 //tempDy = 0;
             }
         });
