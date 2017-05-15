@@ -12,6 +12,7 @@ public class Coin extends Actor {
         setImage(new Image("file:img/coin.png"));
         xPos = -20;
         yPos = -20;
+        dx = 0;
     }
 
     public Coin(int x, int y){
@@ -21,7 +22,12 @@ public class Coin extends Actor {
 
     @Override
     public void act(long now) {
+        move(dx, 0);
+    }
 
+    public void setLocation(int x, int y){
+        setX(x);
+        setY(y);
     }
 
     public void setLocation(){

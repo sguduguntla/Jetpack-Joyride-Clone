@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -24,6 +25,7 @@ public class Main extends Application {
     Barry barry;
     Zapper zapper;
     CoinGroup group;
+    Label scoreLabel;
     int score = 0;
 //    int tempDy = 0;
 
@@ -52,11 +54,12 @@ public class Main extends Application {
         WORLD_WIDTH = primaryScreenBounds.getWidth();
         WORLD_HEIGHT = primaryScreenBounds.getHeight();
 
+        scoreLabel = new Label("Score: " + score);
         barry = new Barry();
         zapper = new Zapper();
         missile = new Missile();
         group = new CoinGroup();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 60; i++) {
             group.add(new Coin());
         }
         barry.setLocation(80, WORLD_HEIGHT - 82);
@@ -98,7 +101,7 @@ public class Main extends Application {
         world.add(barry);
         world.add(zapper);
         world.add(missile);
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 60; i++) {
             world.add(group.get(i));
         }
 
@@ -120,11 +123,26 @@ public class Main extends Application {
         missileTimeline.setCycleCount(Animation.INDEFINITE);
         missileTimeline.play();
 
+        Timeline coinTimeline = new Timeline(new KeyFrame(
+                Duration.millis(4000),
+                ae -> addCoins()));
+        coinTimeline.setCycleCount(Animation.INDEFINITE);
+        coinTimeline.play();
+
         world.start();
 
         stage.setScene(scene);
 
         stage.show();
+    }
+
+    public void addCoins(){
+        int randomNum = (int)(Math.random() * 60);
+        int randomY = (int) (Math.random() * WORLD_HEIGHT);
+        for (int i = 0; i < randomNum; i++) {
+            group.get(i).setLocation(WORLD_WIDTH + (30 * i), randomY);
+            group.get(i).setDx(-12);
+        }
     }
 
     public void boundarycheck(){
