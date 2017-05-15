@@ -9,7 +9,6 @@ public class CoinGroup {
 
     public CoinGroup() {
         coins = new ArrayList<>();
-
     }
 
     public void add(Coin coin) {

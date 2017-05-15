@@ -19,9 +19,12 @@ public class Main extends Application {
     private double WORLD_WIDTH = 600;
     private double WORLD_HEIGHT = 600;
 
+    Scientist scientist;
     Missile missile;
     Barry barry;
     Zapper zapper;
+    CoinGroup group;
+    int score = 0;
 //    int tempDy = 0;
 
     @Override
@@ -52,6 +55,10 @@ public class Main extends Application {
         barry = new Barry();
         zapper = new Zapper();
         missile = new Missile();
+        group = new CoinGroup();
+        for (int i = 0; i < 20; i++) {
+            group.add(new Coin());
+        }
         barry.setLocation(80, WORLD_HEIGHT - 82);
         zapper.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
         missile.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
@@ -91,6 +98,9 @@ public class Main extends Application {
         world.add(barry);
         world.add(zapper);
         world.add(missile);
+        for (int i = 0; i < 20; i++) {
+            world.add(group.get(i));
+        }
 
         Timeline boundaryCheckerTimeline = new Timeline(new KeyFrame(
                 Duration.millis(10),
@@ -137,7 +147,7 @@ public class Main extends Application {
     public void shootZapper(){
         int randomY = (int) (Math.random() * WORLD_HEIGHT);
         zapper.setLocation(WORLD_WIDTH, randomY);
-        zapper.setDx(-15);
+        zapper.setDx(-12);
     }
 
     public static void main(String[] args) {
