@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1646027e-14c1-46c8-b863-b524e7d20b75" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Actor.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Actor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Barry.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Barry.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main$2.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Stomper.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Stomper.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Actor.java" afterPath="$PROJECT_DIR$/src/sample/Actor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Barry.java" afterPath="$PROJECT_DIR$/src/sample/Barry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Main.java" afterPath="$PROJECT_DIR$/src/sample/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,7 +24,7 @@
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="74">
-              <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+              <caret line="79" column="1" lean-forward="false" selection-start-line="79" selection-start-column="1" selection-end-line="79" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -695,7 +687,7 @@
       <workItem from="1494601681586" duration="251000" />
       <workItem from="1494859856753" duration="2225000" />
       <workItem from="1494885919997" duration="201000" />
-      <workItem from="1494886297609" duration="1788000" />
+      <workItem from="1494886297609" duration="1827000" />
     </task>
     <task id="LOCAL-00001" summary="Adding a new Scientist class">
       <created>1494600287097</created>
@@ -781,11 +773,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494861416645</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Fixing barry's gravity">
+      <created>1494888241390</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1494888241390</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5858000" />
+    <option name="totallyTimeSpent" value="5897000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -880,7 +879,8 @@
     <MESSAGE value="Add starter code for the Coin and CoinGroup implementations" />
     <MESSAGE value="Got rid of printing messages and Rectangle2D" />
     <MESSAGE value="Changing all barry heights to barry.getHeight() * 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changing all barry heights to barry.getHeight() * 2" />
+    <MESSAGE value="Fixing barry's gravity" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing barry's gravity" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1348,7 +1348,7 @@
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="74">
-          <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <caret line="79" column="1" lean-forward="false" selection-start-line="79" selection-start-column="1" selection-end-line="79" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
