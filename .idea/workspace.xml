@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1646027e-14c1-46c8-b863-b524e7d20b75" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Coin.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Coin.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/CoinGroup.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/CoinGroup.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main$1.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main$2.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Shield.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Shield.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Stomper.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Stomper.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Coin.java" afterPath="$PROJECT_DIR$/src/sample/Coin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/CoinGroup.java" afterPath="$PROJECT_DIR$/src/sample/CoinGroup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Main.java" afterPath="$PROJECT_DIR$/src/sample/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -554,7 +558,14 @@
       <option name="project" value="LOCAL" />
       <updated>1494810408955</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add starter code for the Coin and CoinGroup implementations">
+      <created>1494819397197</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1494819397197</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -614,7 +625,8 @@
     <MESSAGE value="Add experimental gravity and adapt scene size to screen size.&#10;Add unversioned zapper.png" />
     <MESSAGE value="Implement boundary checking" />
     <MESSAGE value="Clean up / remove redundant code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up / remove redundant code" />
+    <MESSAGE value="Add starter code for the Coin and CoinGroup implementations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add starter code for the Coin and CoinGroup implementations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
