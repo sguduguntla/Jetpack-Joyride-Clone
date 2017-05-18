@@ -5,9 +5,10 @@ public class Barry extends Actor {
     private boolean isFalling;
 
     public Barry() {
-        this.isFalling = false;
+        this.isFalling = true;
+        setDy(0);
 
-        setDy(-4);
+        //setDy(-4);
     }
 
     public void setFalling(boolean falling) {
@@ -22,9 +23,18 @@ public class Barry extends Actor {
     public void act(long now) {
 
         if (isFalling) {
-            setDy(Math.abs(getDy()) * 1.05);
+
+            if (getDy() < 10) {
+                setDy(getDy() + 0.3);
+
+            }
+
+            //System.out.println(getDy());
         } else {
-            setDy(Math.abs(getDy()) * -1.05);
+            if (getDy() > -10) {
+                setDy(getDy() - 0.3);
+
+            }
         }
 
         move(getDx(), getDy());
