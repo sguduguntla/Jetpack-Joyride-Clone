@@ -10,8 +10,8 @@ public class Coin extends Actor {
 
     public Coin(){
         setImage(new Image("file:img/coin.png"));
-        xPos = -20;
-        yPos = -20;
+        xPos = 2000;
+        yPos = 2000;
         dx = 0;
     }
 

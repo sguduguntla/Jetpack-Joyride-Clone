@@ -30,6 +30,16 @@ public class Main extends Application {
     CoinGroup group;
     Label scoreLabel;
     int score = 0;
+
+    Timeline collisionTimeline;
+
+    Timeline boundaryCheckerTimeline;
+
+    Timeline zapperTimeline;
+
+    Timeline missileTimeline;
+
+    Timeline coinTimeline;
 //    int tempDy = 0;
 
     @Override
@@ -99,6 +109,7 @@ public class Main extends Application {
 
 
         barry.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            double dy = barry.getDy();
 
             @Override
             public void handle(KeyEvent event) {
@@ -118,25 +129,31 @@ public class Main extends Application {
             world.add(group.get(i));
         }
 
-        Timeline boundaryCheckerTimeline = new Timeline(new KeyFrame(
+        collisionTimeline = new Timeline(new KeyFrame(
+                Duration.millis(10),
+                ae -> collisionCheck()));
+        collisionTimeline.setCycleCount(Animation.INDEFINITE);
+        collisionTimeline.play();
+
+        boundaryCheckerTimeline = new Timeline(new KeyFrame(
                 Duration.millis(10),
                 ae -> boundarycheck()));
         boundaryCheckerTimeline.setCycleCount(Animation.INDEFINITE);
         boundaryCheckerTimeline.play();
 
-        Timeline zapperTimeline = new Timeline(new KeyFrame(
+        zapperTimeline = new Timeline(new KeyFrame(
                 Duration.millis(2000),
                 ae -> shootZapper()));
         zapperTimeline.setCycleCount(Animation.INDEFINITE);
         zapperTimeline.play();
 
-        Timeline missileTimeline = new Timeline(new KeyFrame(
+        missileTimeline = new Timeline(new KeyFrame(
                 Duration.millis(3000),
                 ae -> shootMissile()));
         missileTimeline.setCycleCount(Animation.INDEFINITE);
         missileTimeline.play();
 
-        Timeline coinTimeline = new Timeline(new KeyFrame(
+        coinTimeline = new Timeline(new KeyFrame(
                 Duration.millis(4000),
                 ae -> addCoins()));
         coinTimeline.setCycleCount(Animation.INDEFINITE);
@@ -147,6 +164,23 @@ public class Main extends Application {
         stage.setScene(scene);
 
         stage.show();
+    }
+
+    public void collisionCheck(){
+        if (barry.getEndGame()){
+            barry.setDy(0);
+            missile.setDx(0);
+            //missile.setLocation(WORLD_WIDTH + 50, 0);
+            zapper.setDx(0);
+            for (int i = 0; i < group.getNumCoins(); i++) {
+                group.get(i).setDx(0);
+            }
+            boundaryCheckerTimeline.stop();
+            coinTimeline.stop();
+            collisionTimeline.stop();
+            zapperTimeline.stop();
+            missileTimeline.stop();
+        }
     }
 
     public void addCoins(){
