@@ -5,11 +5,14 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -19,24 +22,23 @@ public class Main extends Application {
     private double WORLD_WIDTH = Screen.getPrimary().getVisualBounds().getWidth();
     private double WORLD_HEIGHT = Screen.getPrimary().getVisualBounds().getHeight();
 
-    Scientist scientist;
-    Missile missile;
-    Barry barry;
-    Zapper zapper;
-    CoinGroup group;
-    Label scoreLabel;
-    int score = 0;
+    private Scientist scientist;
+    private Missile missile;
+    private Barry barry;
+    private Zapper zapper;
+    private CoinGroup group;
 
-    Timeline collisionTimeline;
+    private Timeline collisionTimeline;
 
-    Timeline boundaryCheckerTimeline;
+    private Timeline boundaryCheckerTimeline;
 
-    Timeline zapperTimeline;
+    private Timeline zapperTimeline;
 
-    Timeline missileTimeline;
+    private Timeline missileTimeline;
 
-    Timeline coinTimeline;
-//    int tempDy = 0;
+    private Timeline coinTimeline;
+    private static Label scoreLabel;
+    private static Label coinsLabel;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -52,8 +54,16 @@ public class Main extends Application {
 
         Scene scene = new Scene(world, WORLD_WIDTH, WORLD_HEIGHT);
 
-        scoreLabel = new Label("Score: " + score);
         barry = new Barry();
+        scoreLabel = new Label("Score: " + 0);
+        scoreLabel.setAlignment(Pos.BOTTOM_CENTER);
+        scoreLabel.setFont(new Font("Helvetica", 50));
+        scoreLabel.setTextFill(Color.WHITE);
+
+        coinsLabel = new Label("Num Coins: " + 0);
+        coinsLabel.setAlignment(Pos.TOP_RIGHT);
+        coinsLabel.setFont(new Font("Helvetica", 50));
+        coinsLabel.setTextFill(Color.WHITE);
         zapper = new Zapper();
         missile = new Missile();
         group = new CoinGroup();
@@ -66,7 +76,7 @@ public class Main extends Application {
         zapper.setImage(new Image("file:img/zapper.png", 200, 200, true, true));
         missile.setImage(new Image("file:img/missile.png", 150, 150, true, true));
 
-        barry.setLocation(80, WORLD_HEIGHT - barry.getHeight());
+        barry.setLocation(WORLD_WIDTH / 5, WORLD_HEIGHT - barry.getHeight());
         zapper.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
         missile.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
 
@@ -86,9 +96,7 @@ public class Main extends Application {
                     } else if (barry.getY() > WORLD_HEIGHT - barry.getHeight() * 2) {
                         //dy = 0;
                     } else {
-////                        barry.setDy(-(5 + tempDy));
-////                        tempDy += 2;
-//                        dy = -7;
+
                     }
 
                     if (barry.getDy() != dy && barry.getDy() != 0) {
@@ -109,10 +117,6 @@ public class Main extends Application {
             @Override
             public void handle(KeyEvent event) {
                 barry.setFalling(true);
-
-                //barry.setDy(barry.getDy() * -1);
-
-                //tempDy = 0;
             }
         });
 
@@ -120,9 +124,13 @@ public class Main extends Application {
         world.add(zapper);
         world.add(missile);
 
-        for (int i = 0; i < 60; i++) {
+        int numCoins = (int) (Math.random() * 50) + 10;
+
+        for (int i = 0; i < numCoins; i++) {
             world.add(group.get(i));
         }
+
+        world.getChildren().addAll(scoreLabel);
 
         collisionTimeline = new Timeline(new KeyFrame(
                 Duration.millis(10),
@@ -197,7 +205,6 @@ public class Main extends Application {
             barry.setLocation(barry.getX(), WORLD_HEIGHT - barry.getHeight() * 2);
         }
         if (barry.getY() < 0) {
-            //barry.setDy(7);
             barry.setLocation(barry.getX(), 1);
         }
     }
@@ -216,6 +223,14 @@ public class Main extends Application {
             zapper.setLocation(WORLD_WIDTH, randomY);
         }
         zapper.setDx(-10);
+    }
+
+    public static void setScoreLabel(int score) {
+        scoreLabel.setText("Score: " + score);
+    }
+
+    public static void setCoinsLabel(int numCoins) {
+        coinsLabel.setText("Num Coins: " + numCoins);
     }
 
     public static void main(String[] args) {
