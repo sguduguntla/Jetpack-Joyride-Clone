@@ -8,10 +8,10 @@ public class Barry extends Actor {
     public Barry() {
         this.isFalling = false;
         endGame = false;
-        setDy(-4);
+        setDy(-0.3);
     }
 
-    public boolean getEndGame(){
+    public boolean getEndGame() {
         return endGame;
     }
 
@@ -28,15 +28,16 @@ public class Barry extends Actor {
         Actor zapper = getOneIntersectingObject(Zapper.class);
         Actor missile = getOneIntersectingObject(Missile.class);
         Actor coin = getOneIntersectingObject(Coin.class);
-        if (zapper != null || missile != null){
+
+        if (zapper != null || missile != null) {
             endGame = true;
         }
+
 
         if (isFalling) {
 
             if (getDy() < 10) {
                 setDy(getDy() + 0.3);
-
             }
 
             //System.out.println(getDy());
@@ -47,14 +48,15 @@ public class Barry extends Actor {
             }
         }
 
+
         move(getDx(), getDy());
     }
 
-    public double getXPos(){
+    public double getXPos() {
         return getX();
     }
 
-    public double getYPos(){
+    public double getYPos() {
         return getY();
     }
 }

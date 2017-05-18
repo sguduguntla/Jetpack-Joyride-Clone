@@ -10,10 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -58,7 +54,6 @@ public class Main extends Application {
 
         scoreLabel = new Label("Score: " + score);
         barry = new Barry();
-        barry.setDy(-4);
         zapper = new Zapper();
         missile = new Missile();
         group = new CoinGroup();
@@ -67,9 +62,9 @@ public class Main extends Application {
             group.add(new Coin());
         }
 
-        barry.setImage(new Image("file:img/barry.png"));
-        zapper.setImage(new Image("file:img/zapper.png"));
-        missile.setImage(new Image("file:img/missile.png"));
+        barry.setImage(new Image("file:img/barry.png", 100, 100, true, true));
+        zapper.setImage(new Image("file:img/zapper.png", 200, 200, true, true));
+        missile.setImage(new Image("file:img/missile.png", 150, 150, true, true));
 
         barry.setLocation(80, WORLD_HEIGHT - barry.getHeight());
         zapper.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
@@ -82,13 +77,13 @@ public class Main extends Application {
             @Override
             public void handle(KeyEvent e) {
                 if (e.getCode() == KeyCode.W) {
-                    if (barry.getFalling()) {
+                    if (barry.getFalling() && barry.getDy() != 0) {
                         barry.setDy(barry.getDy() - 4);
                     }
                     barry.setFalling(false);
-                    if (barry.getY() < 0){
+                    if (barry.getY() < 0) {
                         //dy = 0;
-                    } else if (barry.getY() > WORLD_HEIGHT - barry.getHeight() * 2){
+                    } else if (barry.getY() > WORLD_HEIGHT - barry.getHeight() * 2) {
                         //dy = 0;
                     } else {
 ////                        barry.setDy(-(5 + tempDy));
@@ -166,8 +161,8 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void collisionCheck(){
-        if (barry.getEndGame()){
+    public void collisionCheck() {
+        if (barry.getEndGame()) {
             barry.setDy(0);
             missile.setDx(0);
             //missile.setLocation(WORLD_WIDTH + 50, 0);
@@ -183,16 +178,20 @@ public class Main extends Application {
         }
     }
 
-    public void addCoins(){
-        int randomNum = (int)(Math.random() * 60);
+    public void addCoins() {
+        int randomNum = (int) (Math.random() * 60);
         int randomY = (int) (Math.random() * WORLD_HEIGHT);
         for (int i = 0; i < randomNum; i++) {
-            group.get(i).setLocation(WORLD_WIDTH + (30 * i), randomY);
+            if (group.get(i).getX() < 0) {
+
+                group.get(i).setLocation(WORLD_WIDTH + ((group.get(i).getWidth() + 5) * i), randomY);
+            }
             group.get(i).setDx(-6);
+
         }
     }
 
-    public void boundarycheck(){
+    public void boundarycheck() {
         if (barry.getY() > WORLD_HEIGHT - barry.getHeight() * 2) {
             barry.setDy(0);
             barry.setLocation(barry.getX(), WORLD_HEIGHT - barry.getHeight() * 2);
@@ -203,13 +202,15 @@ public class Main extends Application {
         }
     }
 
-    public void shootMissile(){
+    public void shootMissile() {
         int randomY = (int) (Math.random() * WORLD_HEIGHT);
-        missile.setLocation(WORLD_WIDTH, randomY);
+        if (missile.getX() < 0) {
+            missile.setLocation(WORLD_WIDTH, randomY);
+        }
         missile.setDx(-10);
     }
 
-    public void shootZapper(){
+    public void shootZapper() {
         int randomY = (int) (Math.random() * WORLD_HEIGHT);
         if (zapper.getX() < 0) {
             zapper.setLocation(WORLD_WIDTH, randomY);

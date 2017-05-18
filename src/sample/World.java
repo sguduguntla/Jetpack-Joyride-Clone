@@ -69,7 +69,7 @@ public abstract class World extends Pane {
             }
         });
 
-        setBackground(new Background(new BackgroundImage(new Image("file:img/background.png"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        setBackground(new Background(new BackgroundImage(new Image("file:img/background.png"), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT)));
 
     }

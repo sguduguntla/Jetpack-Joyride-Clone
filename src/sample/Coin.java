@@ -9,7 +9,7 @@ public class Coin extends Actor {
     private int yPos;
 
     public Coin(){
-        setImage(new Image("file:img/coin.png"));
+        setImage(new Image("file:img/coin.png", 40, 40, true, true));
         xPos = 2000;
         yPos = 2000;
         dx = 0;
