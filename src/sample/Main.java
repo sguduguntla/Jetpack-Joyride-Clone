@@ -132,7 +132,6 @@ public class Main extends Application {
         }
 
         world.getChildren().addAll(scoreLabel);
-        world.getChildren().addAll(coinsLabel);
 
         collisionTimeline = new Timeline(new KeyFrame(
                 Duration.millis(10),
