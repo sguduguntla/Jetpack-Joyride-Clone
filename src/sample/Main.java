@@ -60,8 +60,8 @@ public class Main extends Application {
         scoreLabel.setFont(new Font("Helvetica", 50));
         scoreLabel.setTextFill(Color.WHITE);
 
-        coinsLabel = new Label("Num Coins: " + 0);
-        coinsLabel.setAlignment(Pos.TOP_RIGHT);
+        coinsLabel = new Label("Coins: " + 0);
+        coinsLabel.setAlignment(Pos.BOTTOM_CENTER);
         coinsLabel.setFont(new Font("Helvetica", 50));
         coinsLabel.setTextFill(Color.WHITE);
         zapper = new Zapper();
@@ -111,7 +111,6 @@ public class Main extends Application {
             }
         });
 
-
         barry.setOnKeyReleased(new EventHandler<KeyEvent>() {
             double dy = barry.getDy();
 
@@ -132,6 +131,7 @@ public class Main extends Application {
         }
 
         world.getChildren().addAll(scoreLabel);
+        world.getChildren().addAll(coinsLabel);
 
         collisionTimeline = new Timeline(new KeyFrame(
                 Duration.millis(10),
@@ -231,7 +231,7 @@ public class Main extends Application {
     }
 
     public static void setCoinsLabel(int numCoins) {
-        coinsLabel.setText("Num Coins: " + numCoins);
+        coinsLabel.setText("Coins: " + numCoins);
     }
 
     public static void main(String[] args) {
