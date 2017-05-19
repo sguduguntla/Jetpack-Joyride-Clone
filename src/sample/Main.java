@@ -56,7 +56,7 @@ public class Main extends Application {
 
         barry = new Barry();
         scoreLabel = new Label("Score: " + 0);
-        scoreLabel.setAlignment(Pos.BOTTOM_CENTER);
+        scoreLabel.setAlignment(Pos.TOP_RIGHT);
         scoreLabel.setFont(new Font("Helvetica", 50));
         scoreLabel.setTextFill(Color.WHITE);
 

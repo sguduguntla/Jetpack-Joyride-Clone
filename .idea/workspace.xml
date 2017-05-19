@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1646027e-14c1-46c8-b863-b524e7d20b75" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Barry.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Barry.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main$1.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main$2.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main.class" afterPath="$PROJECT_DIR$/out/production/P1_Group_8_Repo/sample/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="1646027e-14c1-46c8-b863-b524e7d20b75" name="Default" comment="Changed">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Main.java" afterPath="$PROJECT_DIR$/src/sample/Main.java" />
     </list>
@@ -37,8 +30,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="90" column="55" selection-start-line="90" selection-start-column="55" selection-end-line="90" selection-end-column="55" />
+            <state relative-caret-position="92">
+              <caret line="56" column="28" selection-start-line="56" selection-start-column="28" selection-end-line="56" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -694,7 +687,14 @@
       <option name="project" value="LOCAL" />
       <updated>1495072779575</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Commented This is Andy! :)">
+      <created>1495205228708</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1495205228709</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -804,7 +804,8 @@
     <MESSAGE value="Fixing barry's gravity" />
     <MESSAGE value="Adjusting barry's gravity to smoothen his movement. Work still needs to be done to improve lagginess. Also added a background image to the pane. Also adjusted the zapper code slightly to disappear from the screen before they reappear." />
     <MESSAGE value="Increasing size of all sprites to make screen to sprite ratio better." />
-    <option name="LAST_COMMIT_MESSAGE" value="Increasing size of all sprites to make screen to sprite ratio better." />
+    <MESSAGE value="Commented This is Andy! :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commented This is Andy! :)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1309,8 +1310,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="90" column="55" selection-start-line="90" selection-start-column="55" selection-end-line="90" selection-end-column="55" />
+        <state relative-caret-position="92">
+          <caret line="56" column="28" selection-start-line="56" selection-start-column="28" selection-end-line="56" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
