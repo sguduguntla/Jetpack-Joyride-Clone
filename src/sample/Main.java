@@ -90,6 +90,7 @@ public class Main extends Application {
                     if (barry.getFalling() && barry.getDy() != 0) {
                         barry.setDy(barry.getDy() - 4);
                     }
+                    //This is Andy! :)
                     barry.setFalling(false);
                     if (barry.getY() < 0) {
                         //dy = 0;
