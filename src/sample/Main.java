@@ -56,7 +56,7 @@ public class Main extends Application {
 
         barry = new Barry();
         scoreLabel = new Label("Score: " + 0);
-        scoreLabel.setAlignment(Pos.BOTTOM_CENTER);
+        scoreLabel.setAlignment(Pos.TOP_CENTER);
         scoreLabel.setFont(new Font("Helvetica", 50));
         scoreLabel.setTextFill(Color.WHITE);
 
@@ -131,6 +131,7 @@ public class Main extends Application {
         }
 
         world.getChildren().addAll(scoreLabel);
+        world.getChildren().addAll(coinsLabel);
 
         collisionTimeline = new Timeline(new KeyFrame(
                 Duration.millis(10),
