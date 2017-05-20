@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
@@ -33,6 +35,8 @@ public class Main extends Application {
 
     private Timeline collisionTimeline;
 
+    private Timeline changeBarryTimeline;
+
     private Timeline boundaryCheckerTimeline;
 
     private Timeline zapperTimeline;
@@ -43,6 +47,7 @@ public class Main extends Application {
     private Timeline coinTimeline;
     private static Label scoreLabel;
     private static Label coinsLabel;
+    HBox box;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -58,16 +63,20 @@ public class Main extends Application {
 
         Scene scene = new Scene(world, WORLD_WIDTH, WORLD_HEIGHT);
 
+        box = new HBox();
+
         barry = new Barry();
         scoreLabel = new Label("Score: " + 0);
-        scoreLabel.setAlignment(Pos.TOP_CENTER);
+        scoreLabel.setAlignment(Pos.TOP_LEFT);
         scoreLabel.setFont(new Font("Helvetica", 50));
         scoreLabel.setTextFill(Color.WHITE);
 
         coinsLabel = new Label("Coins: " + 0);
-        coinsLabel.setAlignment(Pos.BOTTOM_CENTER);
+        coinsLabel.setAlignment(Pos.TOP_RIGHT);
         coinsLabel.setFont(new Font("Helvetica", 50));
         coinsLabel.setTextFill(Color.WHITE);
+
+        box.getChildren().addAll(scoreLabel, coinsLabel);
         zapper = new Zapper();
         zapper2 = new Zapper();
         missile = new Missile();
@@ -84,6 +93,7 @@ public class Main extends Application {
 //        missile.setImage(new Image("file:img/missile.png", 150, 150, true, true));
 
         barry.setImage(new Image("file:img/barry.png"));
+        barry.setImag("barry");
         zapper.setImage(new Image("file:img/zapper.png"));
         zapper2.setImage(new Image("file:img/zapper.png"));
         missile.setImage(new Image("file:img/missile.png"));
@@ -104,6 +114,8 @@ public class Main extends Application {
             @Override
             public void handle(KeyEvent e) {
                 if (e.getCode() == KeyCode.W) {
+                    barry.setImage(new Image("file:img/rising.png"));
+                    barry.setImag("rising");
                     if (barry.getFalling() && barry.getDy() != 0) {
                         barry.setDy(barry.getDy() - 4);
                     }
@@ -134,6 +146,9 @@ public class Main extends Application {
             @Override
             public void handle(KeyEvent event) {
                 barry.setFalling(true);
+                barry.setImage(new Image("file:img/falling.png"));
+                barry.setImag("falling");
+
             }
         });
 
@@ -150,14 +165,21 @@ public class Main extends Application {
             world.add(group.get(i));
         }
 
-        world.getChildren().addAll(scoreLabel);
-        world.getChildren().addAll(coinsLabel);
+//        world.getChildren().addAll(scoreLabel);
+//        world.getChildren().addAll(coinsLabel);
+        world.getChildren().add(box);
 
         collisionTimeline = new Timeline(new KeyFrame(
                 Duration.millis(10),
                 ae -> collisionCheck()));
         collisionTimeline.setCycleCount(Animation.INDEFINITE);
         collisionTimeline.play();
+
+        changeBarryTimeline = new Timeline(new KeyFrame(
+                Duration.millis(2000),
+                ae -> changeBarry()));
+        changeBarryTimeline.setCycleCount(Animation.INDEFINITE);
+        changeBarryTimeline.play();
 
         boundaryCheckerTimeline = new Timeline(new KeyFrame(
                 Duration.millis(10),
@@ -196,6 +218,16 @@ public class Main extends Application {
         stage.show();
     }
 
+    public void changeBarry() {
+        if (barry.getImag().equals("barry")){
+            barry.setImage(new Image("file:img/barry2.png"));
+            barry.setImag("barry2");
+        } else if (barry.getImag().equals("barry2")){
+            barry.setImage(new Image("file:img/barry.png"));
+            barry.setImag("barry");
+        }
+    }
+
     public void collisionCheck() {
         if (barry.getEndGame()) {
             barry.setDy(0);
@@ -230,6 +262,8 @@ public class Main extends Application {
     public void boundarycheck() {
         if (barry.getY() > WORLD_HEIGHT - barry.getHeight() * 2) {
             barry.setDy(0);
+            barry.setImage(new Image("file:img/barry.png"));
+            barry.setImag("barry");
             barry.setLocation(barry.getX(), WORLD_HEIGHT - barry.getHeight() * 2);
         }
         if (barry.getY() < 0) {

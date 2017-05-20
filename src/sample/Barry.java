@@ -7,6 +7,8 @@ public class Barry extends Actor {
     private int score;
     private int numCoins;
 
+    private String imag = "";
+
     public Barry() {
         this.isFalling = false;
         endGame = false;
@@ -22,6 +24,13 @@ public class Barry extends Actor {
     public void setFalling(boolean falling) {
         isFalling = falling;
     }
+    public void setImag(String img) {
+        imag = img;
+    }
+
+    public String getImag() {
+        return imag;
+    }
 
     public boolean getFalling() {
         return this.isFalling;
@@ -33,10 +42,13 @@ public class Barry extends Actor {
         Actor missile = getOneIntersectingObject(Missile.class);
         Actor coin = getOneIntersectingObject(Coin.class);
 
-        score++;
+        if (!endGame){
+            score++;
+        }
         //System.out.println("Score: " + score);
 
         Main.setScoreLabel(score);
+        Main.setCoinsLabel(numCoins);
 
         if (zapper != null || missile != null) {
             endGame = true;
