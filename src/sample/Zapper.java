@@ -2,7 +2,7 @@ package sample;
 
 public class Zapper extends Actor {
 
-    int dx = 0;
+    int dx = -10;
     @Override
     public void act(long now) {
         move(dx, 0);

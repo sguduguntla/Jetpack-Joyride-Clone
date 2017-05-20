@@ -24,8 +24,11 @@ public class Main extends Application {
 
     private Scientist scientist;
     private Missile missile;
+    private Missile missile2;
+    private Missile missile3;
     private Barry barry;
     private Zapper zapper;
+    private Zapper zapper2;
     private CoinGroup group;
 
     private Timeline collisionTimeline;
@@ -33,6 +36,7 @@ public class Main extends Application {
     private Timeline boundaryCheckerTimeline;
 
     private Timeline zapperTimeline;
+    private Timeline zapper2Timeline;
 
     private Timeline missileTimeline;
 
@@ -65,20 +69,33 @@ public class Main extends Application {
         coinsLabel.setFont(new Font("Helvetica", 50));
         coinsLabel.setTextFill(Color.WHITE);
         zapper = new Zapper();
+        zapper2 = new Zapper();
         missile = new Missile();
+        missile2 = new Missile();
+        missile3 = new Missile();
         group = new CoinGroup();
 
         for (int i = 0; i < 60; i++) {
             group.add(new Coin());
         }
 
-        barry.setImage(new Image("file:img/barry.png", 100, 100, true, true));
-        zapper.setImage(new Image("file:img/zapper.png", 200, 200, true, true));
-        missile.setImage(new Image("file:img/missile.png", 150, 150, true, true));
+//        barry.setImage(new Image("file:img/barry.png", 100, 100, true, true));
+//        zapper.setImage(new Image("file:img/zapper.png", 200, 200, true, true));
+//        missile.setImage(new Image("file:img/missile.png", 150, 150, true, true));
+
+        barry.setImage(new Image("file:img/barry.png"));
+        zapper.setImage(new Image("file:img/zapper.png"));
+        zapper2.setImage(new Image("file:img/zapper.png"));
+        missile.setImage(new Image("file:img/missile.png"));
+        missile2.setImage(new Image("file:img/missile.png"));
+        missile3.setImage(new Image("file:img/missile.png"));
 
         barry.setLocation(WORLD_WIDTH / 5, WORLD_HEIGHT - barry.getHeight());
         zapper.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
+        zapper2.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
         missile.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
+        missile2.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
+        missile3.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
 
         barry.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
@@ -104,7 +121,7 @@ public class Main extends Application {
                         dy = barry.getDy();
                     }
 
-                    System.out.println(dy);
+                    //System.out.println(dy);
 
                     barry.setDy(dy);
                 }
@@ -122,7 +139,10 @@ public class Main extends Application {
 
         world.add(barry);
         world.add(zapper);
+        world.add(zapper2);
         world.add(missile);
+        world.add(missile2);
+        world.add(missile3);
 
         int numCoins = (int) (Math.random() * 50) + 10;
 
@@ -150,6 +170,12 @@ public class Main extends Application {
                 ae -> shootZapper()));
         zapperTimeline.setCycleCount(Animation.INDEFINITE);
         zapperTimeline.play();
+
+        zapper2Timeline = new Timeline(new KeyFrame(
+                Duration.millis(3500),
+                ae -> shootZapper2()));
+        zapper2Timeline.setCycleCount(Animation.INDEFINITE);
+        zapper2Timeline.play();
 
         missileTimeline = new Timeline(new KeyFrame(
                 Duration.millis(3000),
@@ -183,6 +209,7 @@ public class Main extends Application {
             coinTimeline.stop();
             collisionTimeline.stop();
             zapperTimeline.stop();
+            zapper2Timeline.stop();
             missileTimeline.stop();
         }
     }
@@ -212,10 +239,28 @@ public class Main extends Application {
 
     public void shootMissile() {
         int randomY = (int) (Math.random() * WORLD_HEIGHT);
+        int randomY2 = (int) (Math.random() * WORLD_HEIGHT);
+        int randomY3 = (int) (Math.random() * WORLD_HEIGHT);
+        int randomNum = (int) (Math.random() * 3);
         if (missile.getX() < 0) {
             missile.setLocation(WORLD_WIDTH, randomY);
         }
-        missile.setDx(-10);
+        if (missile2.getX() < 0) {
+            missile2.setLocation(WORLD_WIDTH, randomY2);
+        }
+        if (missile3.getX() < 0) {
+            missile3.setLocation(WORLD_WIDTH, randomY3);
+        }
+        if (randomNum == 0){
+            missile.setDx(-17);
+        } else if (randomNum == 1){
+            missile.setDx(-17);
+            missile2.setDx(-17);
+        } else {
+            missile.setDx(-17);
+            missile2.setDx(-17);
+            missile3.setDx(-17);
+        }
     }
 
     public void shootZapper() {
@@ -223,7 +268,15 @@ public class Main extends Application {
         if (zapper.getX() < 0) {
             zapper.setLocation(WORLD_WIDTH, randomY);
         }
-        zapper.setDx(-10);
+        zapper.setDx(-12);
+    }
+
+    public void shootZapper2() {
+        int randomY = (int) (Math.random() * WORLD_HEIGHT);
+        if (zapper2.getX() < 0) {
+            zapper2.setLocation(WORLD_WIDTH, randomY);
+        }
+        zapper2.setDx(-12);
     }
 
     public static void setScoreLabel(int score) {

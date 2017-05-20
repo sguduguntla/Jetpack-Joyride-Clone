@@ -34,7 +34,7 @@ public class Barry extends Actor {
         Actor coin = getOneIntersectingObject(Coin.class);
 
         score++;
-        System.out.println("Score: " + score);
+        //System.out.println("Score: " + score);
 
         Main.setScoreLabel(score);
 
