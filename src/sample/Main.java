@@ -36,7 +36,7 @@ public class Main extends Application {
     private Timeline collisionTimeline;
 
     private Timeline changeBarryTimeline;
-
+//
     private Timeline boundaryCheckerTimeline;
 
     private Timeline zapperTimeline;
@@ -47,7 +47,9 @@ public class Main extends Application {
     private Timeline coinTimeline;
     private static Label scoreLabel;
     private static Label coinsLabel;
-    HBox box;
+    private HBox box;
+
+    String image = "";
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -119,7 +121,6 @@ public class Main extends Application {
                     if (barry.getFalling() && barry.getDy() != 0) {
                         barry.setDy(barry.getDy() - 4);
                     }
-                    //This is Andy! :)
                     barry.setFalling(false);
                     if (barry.getY() < 0) {
                         //dy = 0;
@@ -141,7 +142,7 @@ public class Main extends Application {
         });
 
         barry.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            double dy = barry.getDy();
+            //double dy = barry.getDy();
 
             @Override
             public void handle(KeyEvent event) {
@@ -175,14 +176,14 @@ public class Main extends Application {
         collisionTimeline.setCycleCount(Animation.INDEFINITE);
         collisionTimeline.play();
 
-        changeBarryTimeline = new Timeline(new KeyFrame(
-                Duration.millis(2000),
-                ae -> changeBarry()));
-        changeBarryTimeline.setCycleCount(Animation.INDEFINITE);
-        changeBarryTimeline.play();
+//        changeBarryTimeline = new Timeline(new KeyFrame(
+//                Duration.millis(2000),
+//                ae -> changeBarry()));
+//        changeBarryTimeline.setCycleCount(Animation.INDEFINITE);
+//        changeBarryTimeline.play();
 
         boundaryCheckerTimeline = new Timeline(new KeyFrame(
-                Duration.millis(10),
+                Duration.millis(110),
                 ae -> boundarycheck()));
         boundaryCheckerTimeline.setCycleCount(Animation.INDEFINITE);
         boundaryCheckerTimeline.play();
@@ -218,15 +219,17 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void changeBarry() {
-        if (barry.getImag().equals("barry")){
-            barry.setImage(new Image("file:img/barry2.png"));
-            barry.setImag("barry2");
-        } else if (barry.getImag().equals("barry2")){
-            barry.setImage(new Image("file:img/barry.png"));
-            barry.setImag("barry");
-        }
-    }
+//    public void changeBarry() {
+//        if (barry.getDy() == 0){
+//            if (barry.getImag().equals("barry")){
+//                barry.setImage(new Image("file:img/barry2.png"));
+//                barry.setImag("barry2");
+//            } else if (barry.getImag().equals("barry2")){
+//                barry.setImage(new Image("file:img/barry.png"));
+//                barry.setImag("barry");
+//            }
+//        }
+//    }
 
     public void collisionCheck() {
         if (barry.getEndGame()) {
@@ -262,9 +265,25 @@ public class Main extends Application {
     public void boundarycheck() {
         if (barry.getY() > WORLD_HEIGHT - barry.getHeight() * 2) {
             barry.setDy(0);
-            barry.setImage(new Image("file:img/barry.png"));
-            barry.setImag("barry");
+            //barry.setImage(new Image("file:img/barry.png"));
+            //barry.setImag("barry");
             barry.setLocation(barry.getX(), WORLD_HEIGHT - barry.getHeight() * 2);
+            if (image.equals("barry")){
+                barry.setImage(new Image("file:img/barry.png"));
+                image = "barry2";
+                //barry.setImag("barry2");
+            } else {
+                barry.setImage(new Image("file:img/barry2.png"));
+                image = "barry";
+                //barry.setImag("barry");
+            }
+//            if (barry.getImag().equals("barry")){
+//                barry.setImag("barry2");
+//                barry.setImage(new Image("file:img/barry2.png"));
+//            } else if (barry.getImag().equals("barry2")){
+//                barry.setImag("barry");
+//                barry.setImage(new Image("file:img/barry.png"));
+//            }
         }
         if (barry.getY() < 0) {
             barry.setLocation(barry.getX(), 1);

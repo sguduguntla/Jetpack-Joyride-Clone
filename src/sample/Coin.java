@@ -23,6 +23,12 @@ public class Coin extends Actor {
 
     @Override
     public void act(long now) {
+
+        Actor barry = getOneIntersectingObject(Barry.class);
+
+        if (barry != null){
+            setLocation(getWorld().getWidth() + 50, getWorld().getHeight() / 2);
+        }
         move(dx, 0);
     }
 

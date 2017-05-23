@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.image.Image;
+
 public class Barry extends Actor {
 
     private boolean isFalling;
@@ -38,6 +40,7 @@ public class Barry extends Actor {
 
     @Override
     public void act(long now) {
+
         Actor zapper = getOneIntersectingObject(Zapper.class);
         Actor missile = getOneIntersectingObject(Missile.class);
         Actor coin = getOneIntersectingObject(Coin.class);
@@ -55,9 +58,9 @@ public class Barry extends Actor {
         }
 
         if (coin != null) {
-            getWorld().remove(coin);
+            //getWorld().remove(coin);
             numCoins++;
-            System.out.println("Num Coins: " + numCoins);
+            //System.out.println("Num Coins: " + numCoins);
             //Main.setCoinsLabel(numCoins);
         }
 
