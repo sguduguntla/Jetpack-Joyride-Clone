@@ -4,6 +4,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -38,7 +39,6 @@ public class Main extends Application {
     private Timeline changeBarryTimeline;
 
     private Timeline boundaryCheckerTimeline;
-
     private Timeline zapperTimeline;
     private Timeline zapper2Timeline;
 
@@ -86,6 +86,19 @@ public class Main extends Application {
         missile3 = new Missile();
         group = new CoinGroup();
 
+        Background background = new Background();
+        Background background2 = new Background();
+
+        background2.setImage(new Image("file:img/background.png", WORLD_WIDTH, WORLD_HEIGHT, false, true, true));
+
+        background.setImage(new Image("file:img/background.png", WORLD_WIDTH, WORLD_HEIGHT, false, true, true));
+
+        background2.setX(WORLD_WIDTH);
+        background.setX(0);
+
+        background.setDx(-2);
+        background2.setDx(-2);
+
         for (int i = 0; i < 60; i++) {
             group.add(new Coin());
         }
@@ -102,7 +115,7 @@ public class Main extends Application {
         missile2.setImage(new Image("file:img/missile.png"));
         missile3.setImage(new Image("file:img/missile.png"));
 
-        barry.setLocation(WORLD_WIDTH / 5, WORLD_HEIGHT - barry.getHeight());
+        barry.setLocation(WORLD_WIDTH / 5, WORLD_HEIGHT - barry.getHeight() * 2);
         zapper.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
         zapper2.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
         missile.setLocation(WORLD_WIDTH + 50, WORLD_HEIGHT + 50);
@@ -121,6 +134,7 @@ public class Main extends Application {
                     if (barry.getFalling() && barry.getDy() != 0) {
                         barry.setDy(barry.getDy() - 4);
                     }
+                    //This is Andy! :)
                     barry.setFalling(false);
                     if (barry.getY() < 0) {
                         //dy = 0;
@@ -142,7 +156,7 @@ public class Main extends Application {
         });
 
         barry.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            //double dy = barry.getDy();
+            double dy = barry.getDy();
 
             @Override
             public void handle(KeyEvent event) {
@@ -153,7 +167,8 @@ public class Main extends Application {
             }
         });
 
-        //barry.setDy(0);
+        world.add(background);
+        world.add(background2);
         world.add(barry);
         world.add(zapper);
         world.add(zapper2);
@@ -267,8 +282,8 @@ public class Main extends Application {
     public void boundarycheck() {
         if (barry.getY() > WORLD_HEIGHT - barry.getHeight() * 2) {
             barry.setDy(0);
-            //barry.setImage(new Image("file:img/barry.png"));
-            //barry.setImag("barry");
+            barry.setImage(new Image("file:img/barry.png"));
+            barry.setImag("barry");
             barry.setLocation(barry.getX(), WORLD_HEIGHT - barry.getHeight() * 2);
             if (image.equals("barry")){
                 barry.setImage(new Image("file:img/barry.png"));
