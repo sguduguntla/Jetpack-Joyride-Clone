@@ -86,15 +86,12 @@ public class Main extends Application {
         missile3 = new Missile();
         group = new CoinGroup();
 
-        Background background = new Background();
-        Background background2 = new Background();
+       Background background = new Background(WORLD_WIDTH, WORLD_HEIGHT);
+       Background background2 = new Background(WORLD_WIDTH, WORLD_HEIGHT);
 
-        background2.setImage(new Image("file:img/background.png", WORLD_WIDTH, WORLD_HEIGHT, false, true, true));
 
-        background.setImage(new Image("file:img/background.png", WORLD_WIDTH, WORLD_HEIGHT, false, true, true));
-
-        background2.setX(WORLD_WIDTH);
         background.setX(0);
+        background2.setX(WORLD_WIDTH);
 
         background.setDx(-2);
         background2.setDx(-2);
