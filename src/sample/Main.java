@@ -36,7 +36,7 @@ public class Main extends Application {
     private Timeline collisionTimeline;
 
     private Timeline changeBarryTimeline;
-//
+
     private Timeline boundaryCheckerTimeline;
 
     private Timeline zapperTimeline;
@@ -115,7 +115,7 @@ public class Main extends Application {
 
             @Override
             public void handle(KeyEvent e) {
-                if (e.getCode() == KeyCode.W) {
+                if (e.getCode() == KeyCode.SPACE) {
                     barry.setImage(new Image("file:img/rising.png"));
                     barry.setImag("rising");
                     if (barry.getFalling() && barry.getDy() != 0) {
@@ -153,6 +153,7 @@ public class Main extends Application {
             }
         });
 
+        //barry.setDy(0);
         world.add(barry);
         world.add(zapper);
         world.add(zapper2);
@@ -211,6 +212,7 @@ public class Main extends Application {
                 ae -> addCoins()));
         coinTimeline.setCycleCount(Animation.INDEFINITE);
         coinTimeline.play();
+        //barry.setDy(0);
 
         world.start();
 
@@ -321,7 +323,7 @@ public class Main extends Application {
         if (zapper.getX() < 0) {
             zapper.setLocation(WORLD_WIDTH, randomY);
         }
-        zapper.setDx(-12);
+        zapper.setDx(-10);
     }
 
     public void shootZapper2() {
@@ -329,7 +331,7 @@ public class Main extends Application {
         if (zapper2.getX() < 0) {
             zapper2.setLocation(WORLD_WIDTH, randomY);
         }
-        zapper2.setDx(-12);
+        zapper2.setDx(-10);
     }
 
     public static void setScoreLabel(int score) {

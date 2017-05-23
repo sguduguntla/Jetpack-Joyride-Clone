@@ -27,7 +27,7 @@ public class Coin extends Actor {
         Actor barry = getOneIntersectingObject(Barry.class);
 
         if (barry != null){
-            setLocation(getWorld().getWidth() + 50, getWorld().getHeight() / 2);
+            setLocation(getX() - getWorld().getWidth() / 2, getY());
         }
         move(dx, 0);
     }

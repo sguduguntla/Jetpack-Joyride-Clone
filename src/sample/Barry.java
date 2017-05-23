@@ -11,12 +11,14 @@ public class Barry extends Actor {
 
     private String imag = "";
 
+    private int dy;
+
     public Barry() {
-        this.isFalling = false;
+        this.isFalling = true;
         endGame = false;
         score = 0;
         numCoins = 0;
-        setDy(-0.3);
+        setDy(0);
     }
 
     public boolean getEndGame() {
@@ -77,7 +79,6 @@ public class Barry extends Actor {
 
             }
         }
-
 
         move(getDx(), getDy());
     }
