@@ -24,6 +24,9 @@ public class Barry extends Actor {
     public boolean getEndGame() {
         return endGame;
     }
+    public void setEndGame(boolean game) {
+        endGame = game;
+    }
 
     public void setFalling(boolean falling) {
         isFalling = falling;
