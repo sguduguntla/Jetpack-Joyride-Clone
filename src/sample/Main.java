@@ -65,7 +65,7 @@ public class Main extends Application {
 
         Scene scene = new Scene(world, WORLD_WIDTH, WORLD_HEIGHT);
 
-        box = new HBox();
+        box = new HBox(100);
 
         barry = new Barry();
         scoreLabel = new Label("Score: " + 0);
