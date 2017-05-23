@@ -47,6 +47,8 @@ public class Barry extends Actor {
         Actor missile = getOneIntersectingObject(Missile.class);
         Actor coin = getOneIntersectingObject(Coin.class);
 
+        //score++;
+        //System.out.println("Score: " + score);
         if (!endGame){
             score++;
         }
