@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.CacheHint;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -25,7 +26,6 @@ public class Main extends Application {
     private double WORLD_WIDTH = Screen.getPrimary().getVisualBounds().getWidth();
     private double WORLD_HEIGHT = Screen.getPrimary().getVisualBounds().getHeight();
 
-    private Scientist scientist;
     private Missile missile;
     private Missile missile2;
     private Missile missile3;
@@ -37,7 +37,7 @@ public class Main extends Application {
 
     private Timeline collisionTimeline;
 
-    private Timeline changeBarryTimeline;
+    //private Timeline changeBarryTimeline;
 
     private Timeline boundaryCheckerTimeline;
     private Timeline zapperTimeline;
@@ -51,7 +51,7 @@ public class Main extends Application {
     private static Label coinsLabel;
     private HBox box;
 
-    String image = "";
+    String barryImg = "";
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -89,8 +89,8 @@ public class Main extends Application {
         group = new CoinGroup();
         scientists = new Scientists();
 
-       Background background = new Background(WORLD_WIDTH, WORLD_HEIGHT);
-       Background background2 = new Background(WORLD_WIDTH, WORLD_HEIGHT);
+        Background background = new Background(WORLD_WIDTH, WORLD_HEIGHT);
+        Background background2 = new Background(WORLD_WIDTH, WORLD_HEIGHT);
 
 
         background.setX(0);
@@ -103,13 +103,9 @@ public class Main extends Application {
             group.add(new Coin());
         }
 
-        for(int i = 0; i < 7; i++) {
+        for (int i = 0; i < 7; i++) {
             scientists.add(new Scientist());
         }
-
-//        barry.setImage(new Image("file:img/barry.png", 100, 100, true, true));
-//        zapper.setImage(new Image("file:img/zapper.png", 200, 200, true, true));
-//        missile.setImage(new Image("file:img/missile.png", 150, 150, true, true));
 
         barry.setImage(new Image("file:img/barry.png"));
         barry.setImag("barry");
@@ -138,7 +134,6 @@ public class Main extends Application {
                     if (barry.getFalling() && barry.getDy() != 0) {
                         barry.setDy(barry.getDy() - 4);
                     }
-                    //This is Andy! :)
                     barry.setFalling(false);
                     if (barry.getY() < 0) {
                         //dy = 0;
@@ -186,8 +181,8 @@ public class Main extends Application {
             world.add(group.get(i));
         }
 
-        int numScientist = (int) (Math.random() * 7);
-        for(int i = 0; i < numScientist; i++) {
+        int numScientists = (int) (Math.random() * 7);
+        for (int i = 0; i < numScientists; i++) {
             world.add(scientists.get(i));
         }
 
@@ -294,12 +289,13 @@ public class Main extends Application {
 
     public void addScientist() {
         int randomNum = (int) (Math.random() * 7);
-        for(int i = 0; i < randomNum; i++) {
-            if (scientists.get(i).getX() < 0) {
-                scientists.get(i).setLocation(WORLD_WIDTH + ((scientists.get(i).getWidth() + 5) * i), WORLD_HEIGHT - 130);
-            }
+        for (int i = 0; i < randomNum; i++) {
+           // if (scientists.get(i).getX() < 0) {
+                scientists.get(i).setLocation(WORLD_WIDTH + ((scientists.get(i).getWidth() + 5) * i), WORLD_HEIGHT);
+            //}
             scientists.get(i).setDx(-3);
         }
+
     }
 
     public void boundarycheck() {
@@ -308,13 +304,13 @@ public class Main extends Application {
             barry.setImage(new Image("file:img/barry.png"));
             barry.setImag("barry");
             barry.setLocation(barry.getX(), WORLD_HEIGHT - barry.getHeight() * 2);
-            if (image.equals("barry")){
+            if (barryImg.equals("barry")) {
                 barry.setImage(new Image("file:img/barry.png"));
-                image = "barry2";
+                barryImg = "barry2";
                 //barry.setImag("barry2");
             } else {
                 barry.setImage(new Image("file:img/barry2.png"));
-                image = "barry";
+                barryImg = "barry";
                 //barry.setImag("barry");
             }
 //            if (barry.getImag().equals("barry")){
@@ -344,9 +340,9 @@ public class Main extends Application {
         if (missile3.getX() < 0) {
             missile3.setLocation(WORLD_WIDTH, randomY3);
         }
-        if (randomNum == 0){
+        if (randomNum == 0) {
             missile.setDx(-17);
-        } else if (randomNum == 1){
+        } else if (randomNum == 1) {
             missile.setDx(-17);
             missile2.setDx(-17);
         } else {

@@ -7,27 +7,39 @@ public class Scientist extends Actor {
     int dx = -3;
     private int xPos;
     private int yPos;
+    private String imag = "";
+
 
     public Scientist() {
-        setImage(new Image("file:img/scientist.png"));
+        setImage(new Image("file:img/scientist-stationary.png"));
         xPos = 2000;
         yPos = 2000;
         dx = 0;
     }
 
-    public Scientist(int xPos, int yPos) {
-        this.xPos = xPos;
-        this.yPos = yPos;
+    public void setImag(String img) {
+        imag = img;
+    }
+
+    public String getImag() {
+        return imag;
     }
 
     @Override
     public void act(long now) {
-        Actor barry = getOneIntersectingObject(Barry.class);
 
-        if (barry != null){
-            setLocation(getX() - getWorld().getWidth() / 2, getY());
-        }
         move(dx, 0);
+
+        if (imag.equals("scientist-moving")) {
+            imag = "scientist-stationary";
+        } else if (imag.equals("scientist-stationary")) {
+            imag = "scientist-stationary2";
+        } else {
+            imag = "scientist-moving";
+        }
+
+        setImage(new Image("file:img/" + imag + ".png"));
+
     }
 
     public void setDx(int d) {

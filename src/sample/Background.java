@@ -28,11 +28,6 @@ public class Background extends Actor {
 
     private void edgeLoop() {
 
-        double worldWidth = getWorld().getWidth();
-
-        System.out.println("X: " + getX());
-        System.out.println("WIDTH: " + 1440);
-
         if (getX() <= -1440) {
             setX(worldWidth);
         }
