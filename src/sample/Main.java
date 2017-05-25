@@ -33,6 +33,7 @@ public class Main extends Application {
     private Zapper zapper;
     private Zapper zapper2;
     private CoinGroup group;
+    private Scientists scientists;
 
     private Timeline collisionTimeline;
 
@@ -45,6 +46,7 @@ public class Main extends Application {
     private Timeline missileTimeline;
 
     private Timeline coinTimeline;
+    private Timeline scientistTimeLine;
     private static Label scoreLabel;
     private static Label coinsLabel;
     private HBox box;
@@ -85,6 +87,7 @@ public class Main extends Application {
         missile2 = new Missile();
         missile3 = new Missile();
         group = new CoinGroup();
+        scientists = new Scientists();
 
        Background background = new Background(WORLD_WIDTH, WORLD_HEIGHT);
        Background background2 = new Background(WORLD_WIDTH, WORLD_HEIGHT);
@@ -93,11 +96,15 @@ public class Main extends Application {
         background.setX(0);
         background2.setX(WORLD_WIDTH);
 
-        background.setDx(-2);
-        background2.setDx(-2);
+        background.setDx(-10);
+        background2.setDx(-10);
 
         for (int i = 0; i < 60; i++) {
             group.add(new Coin());
+        }
+
+        for(int i = 0; i < 7; i++) {
+            scientists.add(new Scientist());
         }
 
 //        barry.setImage(new Image("file:img/barry.png", 100, 100, true, true));
@@ -127,7 +134,7 @@ public class Main extends Application {
             public void handle(KeyEvent e) {
                 if (e.getCode() == KeyCode.SPACE) {
                     barry.setImage(new Image("file:img/rising.png"));
-                    barry.setImag("rising");
+//                    barry.setImag("rising");
                     if (barry.getFalling() && barry.getDy() != 0) {
                         barry.setDy(barry.getDy() - 4);
                     }
@@ -179,6 +186,11 @@ public class Main extends Application {
             world.add(group.get(i));
         }
 
+        int numScientist = (int) (Math.random() * 7);
+        for(int i = 0; i < numScientist; i++) {
+            world.add(scientists.get(i));
+        }
+
 //        world.getChildren().addAll(scoreLabel);
 //        world.getChildren().addAll(coinsLabel);
         world.getChildren().add(box);
@@ -224,6 +236,10 @@ public class Main extends Application {
                 ae -> addCoins()));
         coinTimeline.setCycleCount(Animation.INDEFINITE);
         coinTimeline.play();
+
+        scientistTimeLine = new Timeline(new KeyFrame(Duration.millis(4000), ae -> addScientist()));
+        scientistTimeLine.setCycleCount(Animation.INDEFINITE);
+        scientistTimeLine.play();
         //barry.setDy(0);
 
         world.start();
@@ -256,6 +272,7 @@ public class Main extends Application {
             }
             boundaryCheckerTimeline.stop();
             coinTimeline.stop();
+            scientistTimeLine.stop();
             collisionTimeline.stop();
             zapperTimeline.stop();
             zapper2Timeline.stop();
@@ -268,11 +285,20 @@ public class Main extends Application {
         int randomY = (int) (Math.random() * WORLD_HEIGHT);
         for (int i = 0; i < randomNum; i++) {
             if (group.get(i).getX() < 0) {
-
                 group.get(i).setLocation(WORLD_WIDTH + ((group.get(i).getWidth() + 5) * i), randomY);
             }
             group.get(i).setDx(-6);
 
+        }
+    }
+
+    public void addScientist() {
+        int randomNum = (int) (Math.random() * 7);
+        for(int i = 0; i < randomNum; i++) {
+            if (scientists.get(i).getX() < 0) {
+                scientists.get(i).setLocation(WORLD_WIDTH + ((scientists.get(i).getWidth() + 5) * i), WORLD_HEIGHT - 130);
+            }
+            scientists.get(i).setDx(-3);
         }
     }
 
