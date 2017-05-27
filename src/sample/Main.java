@@ -181,7 +181,7 @@ public class Main extends Application {
             world.add(group.get(i));
         }
 
-        int numScientists = (int) (Math.random() * 7);
+        int numScientists = 7;
         for (int i = 0; i < numScientists; i++) {
             world.add(scientists.get(i));
         }
@@ -282,19 +282,23 @@ public class Main extends Application {
             if (group.get(i).getX() < 0) {
                 group.get(i).setLocation(WORLD_WIDTH + ((group.get(i).getWidth() + 5) * i), randomY);
             }
-            group.get(i).setDx(-6);
+            group.get(i).setDx(-10);
 
         }
     }
 
     public void addScientist() {
-        int randomNum = (int) (Math.random() * 7);
-        for (int i = 0; i < randomNum; i++) {
-           // if (scientists.get(i).getX() < 0) {
-                scientists.get(i).setLocation(WORLD_WIDTH + ((scientists.get(i).getWidth() + 5) * i), WORLD_HEIGHT);
-            //}
-            scientists.get(i).setDx(-3);
+        //int randomNum = (int) (Math.random() * 7);
+//        for (int i = 0; i < randomNum; i++) {
+//           if (scientists.get(i).getX() < 0) {
+//               scientists.get(i).setLocation(WORLD_WIDTH + ((scientists.get(i).getWidth() + 5) * i), WORLD_HEIGHT - scientists.get(i).getHeight() * 2);
+//           }
+//           scientists.get(i).setDx(-10);
+//        }
+        if (scientists.get(0).getX() < 0) {
+            scientists.get(0).setLocation(WORLD_WIDTH + ((scientists.get(0).getWidth() + 5) * 0), WORLD_HEIGHT - scientists.get(0).getHeight() * 2);
         }
+        scientists.get(0).setDx(-10);
 
     }
 
@@ -324,6 +328,17 @@ public class Main extends Application {
         if (barry.getY() < 0) {
             barry.setLocation(barry.getX(), 1);
         }
+        for (int i = 0; i < 7; i++) {
+            if (scientists.get(i).getImag().equals("scientist-moving")) {
+                scientists.get(i).setImag("scientist-stationary");
+            } else if (scientists.get(i).getImag().equals("scientist-stationary")) {
+                scientists.get(i).setImag("scientist-stationary2");
+            } else {
+                scientists.get(i).setImag("scientist-moving");
+            }
+
+            scientists.get(i).setImage(new Image("file:img/" + scientists.get(i).getImag() + ".png"));
+        }
     }
 
     public void shootMissile() {
@@ -341,14 +356,14 @@ public class Main extends Application {
             missile3.setLocation(WORLD_WIDTH, randomY3);
         }
         if (randomNum == 0) {
-            missile.setDx(-17);
+            missile.setDx(-25);
         } else if (randomNum == 1) {
-            missile.setDx(-17);
-            missile2.setDx(-17);
+            missile.setDx(-25);
+            missile2.setDx(-25);
         } else {
-            missile.setDx(-17);
-            missile2.setDx(-17);
-            missile3.setDx(-17);
+            missile.setDx(-25);
+            missile2.setDx(-25);
+            missile3.setDx(-25);
         }
     }
 

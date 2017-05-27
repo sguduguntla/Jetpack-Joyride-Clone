@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 
 public class Scientist extends Actor {
 
-    int dx = -3;
+    int dx;
     private int xPos;
     private int yPos;
     private String imag = "";
@@ -12,9 +12,10 @@ public class Scientist extends Actor {
 
     public Scientist() {
         setImage(new Image("file:img/scientist-stationary.png"));
+        imag = "scientist-stationary";
         xPos = 2000;
         yPos = 2000;
-        dx = 0;
+        dx = -7;
     }
 
     public void setImag(String img) {
@@ -30,15 +31,15 @@ public class Scientist extends Actor {
 
         move(dx, 0);
 
-        if (imag.equals("scientist-moving")) {
-            imag = "scientist-stationary";
-        } else if (imag.equals("scientist-stationary")) {
-            imag = "scientist-stationary2";
-        } else {
-            imag = "scientist-moving";
-        }
-
-        setImage(new Image("file:img/" + imag + ".png"));
+//        if (imag.equals("scientist-moving")) {
+//            imag = "scientist-stationary";
+//        } else if (imag.equals("scientist-stationary")) {
+//            imag = "scientist-stationary2";
+//        } else {
+//            imag = "scientist-moving";
+//        }
+//
+//        setImage(new Image("file:img/" + imag + ".png"));
 
     }
 
