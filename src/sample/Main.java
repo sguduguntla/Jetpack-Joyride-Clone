@@ -36,6 +36,8 @@ public class Main extends Application {
     private PowerupBox powerupBox;
     private Scientist scientist;
     private CoinGroup group;
+    private Background background;
+    private Background background2;
 
     private Timeline collisionTimeline;
     private Timeline boundaryCheckerTimeline;
@@ -50,6 +52,7 @@ public class Main extends Application {
 
     private static Label scoreLabel;
     private static Label coinsLabel;
+    private Label shieldLabel;
 
     private World world;
 
@@ -95,8 +98,8 @@ public class Main extends Application {
         group = new CoinGroup();
         scientist = new Scientist();
 
-        Background background = new Background();
-        Background background2 = new Background();
+        background = new Background();
+        background2 = new Background();
 
         background.setX(0);
         background2.setX(WORLD_WIDTH);
@@ -253,6 +256,7 @@ public class Main extends Application {
     public void stopPowerup() {
         if (powerupCounter > 0){
             powerupLengthTimeline.stop();
+            scoreBox.getChildren().remove(shieldLabel);
             powerupCounter = 0;
             barry.setPowerUp("none");
         } else {
@@ -304,6 +308,18 @@ public class Main extends Application {
             zapper2Timeline.stop();
             missileTimeline.stop();
             powerupTimeline.stop();
+            powerupLengthTimeline.stop();
+            background.setDx(0);
+            background2.setDx(0);
+            Label endGameLabel = new Label("Game Over");
+            endGameLabel.setAlignment(Pos.CENTER);
+            endGameLabel.setFont(new Font("Helvetica", 50));
+            endGameLabel.setTextFill(Color.WHITE);
+
+            scoreBox.getChildren().add(endGameLabel);
+
+
+
         } else {
             PowerupBox intersectingPowerupBox = barry.getOneIntersectingObject(PowerupBox.class);
 
@@ -312,7 +328,7 @@ public class Main extends Application {
                 intersectingPowerupBox.setX(WORLD_WIDTH + 50);
                 barry.setPowerUp("shield");
 
-                Label shieldLabel = new Label("Shield Activated");
+                shieldLabel = new Label("Shield Activated");
                 shieldLabel.setAlignment(Pos.TOP_CENTER);
                 shieldLabel.setFont(new Font("Helvetica", 50));
                 shieldLabel.setTextFill(Color.WHITE);
@@ -345,7 +361,7 @@ public class Main extends Application {
         if (scientist.getX() < 0) {
             scientist.setLocation(WORLD_WIDTH, WORLD_HEIGHT - scientist.getHeight() * 2);
         }
-        scientist.setDx(-10);
+        scientist.setDx(-15);
 
     }
 
@@ -399,8 +415,9 @@ public class Main extends Application {
 
     public void locateMissile() {
         missileLocateTiming += 10;
+        missileShootCounter += missile.getCounter();
 
-        if (missile.getX() < 0) {
+        if (missile.getX() < 0 || missile.getX() > WORLD_WIDTH + 50) {
             missileShooting = false;
             missile.setImage(new Image("file:img/missile_target.png"));
             missile.setLocation(WORLD_WIDTH - missile.getImage().getWidth(), barry.getY());
@@ -425,6 +442,7 @@ public class Main extends Application {
         missile.setRotate(0);
         missileShooting = true;
         missileShootCounter++;
+        missileShootCounter += missile.getCounter();
         missile.setImage(new Image("file:img/missile_left.png", WORLD_WIDTH / 5, WORLD_HEIGHT / 14, true, true, true));
         missile.setLocation(WORLD_WIDTH - missile.getImage().getWidth(), barry.getY());
         missile.setDx(-25);
