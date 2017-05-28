@@ -26,6 +26,7 @@ public class Main extends Application {
     private boolean missileShooting = false;
     private long missileLocateTiming = 0;
     private int missileShootCounter = 1;
+    private int powerupCounter = 0;
 
     private Missile missile;
 
@@ -45,6 +46,7 @@ public class Main extends Application {
     private Timeline coinTimeline;
     private Timeline scientistTimeLine;
     private Timeline powerupTimeline;
+    private Timeline powerupLengthTimeline;
 
     private static Label scoreLabel;
     private static Label coinsLabel;
@@ -213,6 +215,12 @@ public class Main extends Application {
         powerupTimeline.setCycleCount(Animation.INDEFINITE);
         powerupTimeline.play();
 
+        powerupLengthTimeline = new Timeline(new KeyFrame(
+                Duration.millis(10000),
+                ae -> stopPowerup()));
+        powerupLengthTimeline.setCycleCount(Animation.INDEFINITE);
+//        powerupLengthTimeline.play();
+
         missileTimeline = new Timeline(new KeyFrame(
                 Duration.millis(7000),
                 ae -> shootMissile()));
@@ -240,6 +248,28 @@ public class Main extends Application {
         stage.setScene(scene);
 
         stage.show();
+    }
+
+    public void stopPowerup() {
+        if (powerupCounter > 0){
+            powerupLengthTimeline.stop();
+            powerupCounter = 0;
+            barry.setPowerUp("none");
+        } else {
+            powerupCounter++;
+        }
+        if (barry.getPowerUp().equals("none")) {
+            int randomY = (int) ((Math.random() * 300) + 100);
+
+            if (powerupBox.getX() < 0) {
+                powerupBox.setLocation(WORLD_WIDTH, randomY);
+            }
+
+            powerupBox.setDx(-10);
+        } else {
+            powerupBox.setX(WORLD_WIDTH + 50);
+        }
+
     }
 
     public void spawnPowerupBox() {
@@ -288,6 +318,7 @@ public class Main extends Application {
                 shieldLabel.setTextFill(Color.WHITE);
 
                 scoreBox.getChildren().add(shieldLabel);
+                powerupLengthTimeline.play();
 
             }
         }
