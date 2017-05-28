@@ -14,7 +14,7 @@ public class Shield extends Actor implements Powerup {
 
     @Override
     public void activate() {
-
+        
     }
 
     @Override

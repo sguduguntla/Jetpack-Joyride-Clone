@@ -2,19 +2,12 @@ package sample;
 
 import javafx.scene.image.Image;
 
-/**
- * Created by sguduguntla on 5/18/17.
- */
 public class Background extends Actor {
 
-    private double worldWidth;
-    private double worldHeight;
 
-    public Background(double worldWidth, double worldHeight) {
-        this.worldWidth = worldWidth;
-        this.worldHeight = worldHeight;
+    public Background() {
 
-        setImage(new Image("file:img/background.png", worldWidth, worldHeight, false, true, true));
+        setImage(new Image("file:img/background.png", Main.WORLD_WIDTH, Main.WORLD_HEIGHT, false, true, true));
 
     }
 
@@ -28,8 +21,8 @@ public class Background extends Actor {
 
     private void edgeLoop() {
 
-        if (getX() <= -1440) {
-            setX(worldWidth);
+        if (getX() <= -Main.WORLD_WIDTH - 10) {
+            setX(Main.WORLD_WIDTH - 10);
         }
 
     }

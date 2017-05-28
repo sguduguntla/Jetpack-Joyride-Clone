@@ -1,20 +1,25 @@
 package sample;
 
-public class Missile extends Actor {
+import javafx.scene.image.Image;
 
-    int dx = 0;
+public class Missile extends Actor {
 
     @Override
     public void act(long now) {
-        move(dx, 0);
+
+        move(getDx(), getDy());
+
+        Barry barry = getOneIntersectingObject(Barry.class);
+
+        if (barry != null) {
+            if (barry.getPowerUp().equals("shield")) {
+                setImage(new Image("file:img/missile_right.png", getWorld().getWidth() / 5, getWorld().getHeight() / 14, true, true, true));
+                setDx(getDx() * -1);
+                int randomDy = -10 + (int) (Math.random() * 20) + 1;
+                setDy(randomDy);
+                setRotate(randomDy);
+            }
+        }
     }
 
-    public void setLocation(int x, int y){
-        setX(x);
-        setY(y);
-    }
-
-    public void setDx(int d){
-        dx = d;
-    }
 }
