@@ -20,8 +20,8 @@ import javafx.util.Duration;
 
 public class Main extends Application {
 
-    public static final double WORLD_WIDTH = Screen.getPrimary().getVisualBounds().getWidth();
-    public static final double WORLD_HEIGHT = Screen.getPrimary().getVisualBounds().getHeight();
+    public static double WORLD_WIDTH;
+    public static double WORLD_HEIGHT;
 
     private boolean missileShooting = false;
     private long missileLocateTiming = 0;
@@ -64,6 +64,9 @@ public class Main extends Application {
 
             }
         };
+
+        WORLD_WIDTH = Screen.getPrimary().getVisualBounds().getWidth();
+        WORLD_HEIGHT = Screen.getPrimary().getVisualBounds().getHeight();
 
         stage.setTitle("P1 Group 8 Game Engine");
 
