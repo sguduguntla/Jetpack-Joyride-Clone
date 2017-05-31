@@ -397,7 +397,7 @@ public class Main extends Application {
     }
 
     public void speedUpGame() {
-        double speedIncrement = 0.003;
+        double speedIncrement = 0.0003;
         double missileSpeedIncrement = 15;
 
         background.setDx(background.getDx() - speedIncrement);
@@ -405,6 +405,12 @@ public class Main extends Application {
 
         if (missile.getDx() < 0) {
             missile.setDx(background.getDx() - missileSpeedIncrement);
+        }
+
+        zapper.setDx(background.getDx());
+        zapper2.setDx(background.getDx());
+        for (int i = 0; i < coinGroup.getNumCoins(); i++) {
+            coinGroup.get(i).setDx(background.getDx());
         }
 
     }
