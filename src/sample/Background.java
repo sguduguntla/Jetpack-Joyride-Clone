@@ -25,6 +25,8 @@ public class Background extends Actor {
             setX(Main.WORLD_WIDTH - 10);
         }
 
+
+
     }
 
 }

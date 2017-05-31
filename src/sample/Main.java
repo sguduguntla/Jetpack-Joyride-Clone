@@ -35,7 +35,7 @@ public class Main extends Application {
     private Zapper zapper2;
     private PowerupBox powerupBox;
     private Scientist scientist;
-    private CoinGroup group;
+    private CoinGroup coinGroup;
     private Background background;
     private Background background2;
 
@@ -49,26 +49,27 @@ public class Main extends Application {
     private Timeline scientistTimeLine;
     private Timeline powerupTimeline;
     private Timeline powerupLengthTimeline;
+    private Timeline powerupDurationCounterTimeline;
 
     private static Label scoreLabel;
     private static Label coinsLabel;
+    private Label howToPlayLabel;
+
     private Label shieldLabel;
 
-    private World world;
+    private int shieldDuration = 20;
+
+    private MyWorld world;
 
     private HBox scoreBox;
+    private HBox howToPlayBox;
 
     String barryImg = "";
 
     @Override
     public void start(Stage stage) throws Exception {
 
-        world = new World() {
-            @Override
-            public void act(long now) {
-
-            }
-        };
+        world = new MyWorld();
 
         WORLD_WIDTH = Screen.getPrimary().getVisualBounds().getWidth();
         WORLD_HEIGHT = Screen.getPrimary().getVisualBounds().getHeight();
@@ -79,8 +80,30 @@ public class Main extends Application {
 
         scoreBox = new HBox(100);
 
+        TitlePage titlePage = new TitlePage();
+
+        titlePage.setImage(new Image("file:img/title-bg.png", WORLD_WIDTH, WORLD_HEIGHT, false, true, true));
+
+        world.add(titlePage);
+
+        titlePage.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent e) {
+                if (e.getCode() == KeyCode.SPACE) {
+                    world.remove(titlePage);
+                    startGame();
+                }
+            }
+        });
+
+        stage.setScene(scene);
+
+        stage.show();
+    }
+
+    public void startGame() {
         barry = new Barry();
-        scoreLabel = new Label("Score: " + 0);
+        scoreLabel = new Label("Distance: " + 0 + "m");
         scoreLabel.setAlignment(Pos.TOP_LEFT);
         scoreLabel.setFont(new Font("Helvetica", 50));
         scoreLabel.setTextFill(Color.WHITE);
@@ -90,12 +113,24 @@ public class Main extends Application {
         coinsLabel.setFont(new Font("Helvetica", 50));
         coinsLabel.setTextFill(Color.WHITE);
 
+        howToPlayLabel = new Label("Press SPACE to make Barry fly!");
+        howToPlayLabel.setAlignment(Pos.TOP_CENTER);
+        howToPlayLabel.setFont(new Font("Helvetica", 50));
+        howToPlayLabel.setTextFill(Color.WHITE);
+
+        howToPlayBox = new HBox();
+
+        howToPlayBox.setTranslateX(WORLD_WIDTH / 3);
+        howToPlayBox.setTranslateY(WORLD_HEIGHT / 4);
+
+        howToPlayBox.getChildren().add(howToPlayLabel);
+
         scoreBox.getChildren().addAll(scoreLabel, coinsLabel);
         zapper = new Zapper();
         zapper2 = new Zapper();
         powerupBox = new PowerupBox();
         missile = new Missile();
-        group = new CoinGroup();
+        coinGroup = new CoinGroup();
         scientist = new Scientist();
 
         background = new Background();
@@ -108,7 +143,7 @@ public class Main extends Application {
         background2.setDx(-10);
 
         for (int i = 0; i < 60; i++) {
-            group.add(new Coin());
+            coinGroup.add(new Coin());
         }
 
         barry.setImag("barry");
@@ -132,6 +167,7 @@ public class Main extends Application {
             @Override
             public void handle(KeyEvent e) {
                 if (e.getCode() == KeyCode.SPACE) {
+                    world.getChildren().remove(howToPlayBox);
                     if (barry.getPowerUp().equals("shield")) {
                         barry.setImag("barry_rising_shield");
                     } else {
@@ -180,13 +216,14 @@ public class Main extends Application {
         world.add(powerupBox);
         world.add(scientist);
 
-        int numCoins = (int) (Math.random() * 50) + 10;
+        int numCoins = (int) (Math.random() * 40) + 10;
 
         for (int i = 0; i < numCoins; i++) {
-            world.add(group.get(i));
+            world.add(coinGroup.get(i));
+            coinGroup.get(i).setX(WORLD_WIDTH + 50);
         }
 
-        world.getChildren().add(scoreBox);
+        world.getChildren().addAll(scoreBox, howToPlayBox);
 
         collisionTimeline = new Timeline(new KeyFrame(
                 Duration.millis(10),
@@ -212,6 +249,9 @@ public class Main extends Application {
         zapper2Timeline.setCycleCount(Animation.INDEFINITE);
         zapper2Timeline.play();
 
+        powerupDurationCounterTimeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> updateShieldLabel()));
+        powerupDurationCounterTimeline.setCycleCount(Animation.INDEFINITE);
+
         powerupTimeline = new Timeline(new KeyFrame(
                 Duration.millis(4200),
                 ae -> spawnPowerupBox()));
@@ -222,7 +262,6 @@ public class Main extends Application {
                 Duration.millis(10000),
                 ae -> stopPowerup()));
         powerupLengthTimeline.setCycleCount(Animation.INDEFINITE);
-//        powerupLengthTimeline.play();
 
         missileTimeline = new Timeline(new KeyFrame(
                 Duration.millis(7000),
@@ -248,16 +287,22 @@ public class Main extends Application {
 
         world.start();
 
-        stage.setScene(scene);
+    }
 
-        stage.show();
+
+
+    public void updateShieldLabel() {
+        shieldDuration--;
+        shieldLabel.setText("Shield Activated: " + shieldDuration + "s");
     }
 
     public void stopPowerup() {
-        if (powerupCounter > 0){
+        if (powerupCounter > 0) {
             powerupLengthTimeline.stop();
+            powerupDurationCounterTimeline.stop();
             scoreBox.getChildren().remove(shieldLabel);
             powerupCounter = 0;
+            shieldDuration = 20;
             barry.setPowerUp("none");
         } else {
             powerupCounter++;
@@ -284,7 +329,7 @@ public class Main extends Application {
                 powerupBox.setLocation(WORLD_WIDTH, randomY);
             }
 
-            powerupBox.setDx(-10);
+            powerupBox.setDx(background.getDx());
         } else {
             powerupBox.setX(WORLD_WIDTH + 50);
         }
@@ -297,8 +342,8 @@ public class Main extends Application {
             barry.setDy(0);
             missile.setDx(0);
             zapper.setDx(0);
-            for (int i = 0; i < group.getNumCoins(); i++) {
-                group.get(i).setDx(0);
+            for (int i = 0; i < coinGroup.getNumCoins(); i++) {
+                coinGroup.get(i).setDx(0);
             }
             boundaryCheckerTimeline.stop();
             coinTimeline.stop();
@@ -318,8 +363,6 @@ public class Main extends Application {
 
             scoreBox.getChildren().add(endGameLabel);
 
-
-
         } else {
             PowerupBox intersectingPowerupBox = barry.getOneIntersectingObject(PowerupBox.class);
 
@@ -328,13 +371,19 @@ public class Main extends Application {
                 intersectingPowerupBox.setX(WORLD_WIDTH + 50);
                 barry.setPowerUp("shield");
 
-                shieldLabel = new Label("Shield Activated");
+                shieldLabel = new Label("Shield Activated: " + shieldDuration + "s");
                 shieldLabel.setAlignment(Pos.TOP_CENTER);
                 shieldLabel.setFont(new Font("Helvetica", 50));
                 shieldLabel.setTextFill(Color.WHITE);
 
+                if (background.getDx() >= 18) {
+                    background.setDx(background.getDx() - 10);
+                    background2.setDx(background2.getDx() - 10);
+                }
+
                 scoreBox.getChildren().add(shieldLabel);
                 powerupLengthTimeline.play();
+                powerupDurationCounterTimeline.play();
 
             }
         }
@@ -342,16 +391,34 @@ public class Main extends Application {
         if (barry.getPowerUp().equals("shield")) {
             powerupBox.setX(WORLD_WIDTH + 50);
         }
+
+        speedUpGame();
+
+    }
+
+    public void speedUpGame() {
+        double speedIncrement = 0.003;
+        double missileSpeedIncrement = 15;
+
+        background.setDx(background.getDx() - speedIncrement);
+        background2.setDx(background2.getDx() - speedIncrement);
+
+        if (missile.getDx() < 0) {
+            missile.setDx(background.getDx() - missileSpeedIncrement);
+        }
+
     }
 
     public void addCoins() {
         int randomNum = (int) (Math.random() * 60);
-        int randomY = (int) (Math.random() * WORLD_HEIGHT);
+        int randomY = (int) (Math.random() * (WORLD_HEIGHT - scientist.getHeight() * 2));
         for (int i = 0; i < randomNum; i++) {
-            if (group.get(i).getX() < 0) {
-                group.get(i).setLocation(WORLD_WIDTH + ((group.get(i).getWidth() + 5) * i), randomY);
+            if (coinGroup.get(i).getX() < 0) {
+                coinGroup.get(i).setLocation(WORLD_WIDTH + ((coinGroup.get(i).getWidth() + 5) * i), randomY);
             }
-            group.get(i).setDx(-10);
+            if (coinGroup.get(i).getDx() == 0) {
+                coinGroup.get(i).setDx(background.getDx());
+            }
 
         }
     }
@@ -445,27 +512,34 @@ public class Main extends Application {
         missileShootCounter += missile.getCounter();
         missile.setImage(new Image("file:img/missile_left.png", WORLD_WIDTH / 5, WORLD_HEIGHT / 14, true, true, true));
         missile.setLocation(WORLD_WIDTH - missile.getImage().getWidth(), barry.getY());
-        missile.setDx(-25);
+        if (missile.getDx() == 0) {
+            missile.setDx(-25);
+        }
     }
 
     public void shootZapper() {
-        int randomY = (int) (Math.random() * WORLD_HEIGHT);
+        int randomY = (int) (Math.random() * (WORLD_HEIGHT - scientist.getHeight() * 3));
         if (zapper.getX() < 0) {
             zapper.setLocation(WORLD_WIDTH, randomY);
         }
-        zapper.setDx(-10);
+        if (zapper.getDx() == 0) {
+            zapper.setDx(background.getDx());
+        }
     }
 
     public void shootZapper2() {
-        int randomY = (int) (Math.random() * WORLD_HEIGHT);
+        int randomY = (int) (Math.random() * (WORLD_HEIGHT - scientist.getHeight() * 3));
         if (zapper2.getX() < 0) {
             zapper2.setLocation(WORLD_WIDTH, randomY);
         }
-        zapper2.setDx(-10);
+        if (zapper2.getDx() == 0) {
+            zapper2.setDx(background.getDx());
+
+        }
     }
 
     public static void setScoreLabel(int score) {
-        scoreLabel.setText("Score: " + score);
+        scoreLabel.setText("Distance: " + score + "m");
     }
 
     public static void setCoinsLabel(int numCoins) {
