@@ -1,17 +1,4 @@
 
 .idea
 *.iml
-
-/out/production/P1_Group_8_Repo/sample/Background.class
-/out/production/P1_Group_8_Repo/sample/Missile.class
-/out/production/P1_Group_8_Repo/sample/Actor.class
-/out/production/P1_Group_8_Repo/sample/Coin.class
-/out/production/P1_Group_8_Repo/sample/World.class
-/out/production/P1_Group_8_Repo/sample/CoinGroup.class
-/out/production/P1_Group_8_Repo/sample/Barry.class
-/out/production/P1_Group_8_Repo/sample/Zapper.class
-/out/production/P1_Group_8_Repo/sample/Main.class
-/out/production/P1_Group_8_Repo/sample/Main$3.class
-/out/production/P1_Group_8_Repo/sample/World$1$1.class
-/out/production/P1_Group_8_Repo/sample/World$1$2.class
 /out/
