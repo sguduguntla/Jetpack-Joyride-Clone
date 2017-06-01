@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1646027e-14c1-46c8-b863-b524e7d20b75" name="Default" comment="Adding gitignore file">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+    <list default="true" id="1646027e-14c1-46c8-b863-b524e7d20b75" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,8 +42,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="5" lean-forward="true" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+            <state relative-caret-position="165">
+              <caret line="11" column="51" lean-forward="true" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -862,7 +855,7 @@
       <workItem from="1496006031264" duration="117000" />
       <workItem from="1496206509459" duration="6601000" />
       <workItem from="1496291614605" duration="292000" />
-      <workItem from="1496291945148" duration="1244000" />
+      <workItem from="1496291945148" duration="1316000" />
     </task>
     <task id="LOCAL-00001" summary="Adding a new Scientist class">
       <created>1494600287097</created>
@@ -1088,11 +1081,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496292666022</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Removing idea files">
+      <created>1496293205683</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1496293205683</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41495000" />
+    <option name="totallyTimeSpent" value="41567000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2048" height="1152" extended-state="0" />
@@ -1183,7 +1183,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added onKeyReleased() event handler to prevent Barry from moving when a directional key is not pressed." />
     <MESSAGE value="Change Barry's speed to make the game more fast-paced" />
     <MESSAGE value="Add basic act move functions to each actor subclass" />
     <MESSAGE value="Implement the Zapper and Missile classes with timers" />
@@ -1208,7 +1207,8 @@
     <MESSAGE value="Add a timer to the shield power-up to disable the shield after being active for 10 seconds." />
     <MESSAGE value="Added stomper powerup and did some more code cleanup. Powerup is chosen randomly when the powerup box is intersected by Barry." />
     <MESSAGE value="Adding gitignore file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding gitignore file" />
+    <MESSAGE value="Removing idea files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removing idea files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1597,8 +1597,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="5" lean-forward="true" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+        <state relative-caret-position="165">
+          <caret line="11" column="51" lean-forward="true" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
           <folding />
         </state>
       </provider>
