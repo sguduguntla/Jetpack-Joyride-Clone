@@ -6,9 +6,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +34,6 @@ public abstract class World extends Pane {
                             List<Actor> actors = getObjects(Actor.class);
 
                             for (Actor actor : actors) {
-//                                System.out.println("Actor: " + actor);
-//                                System.out.println("Actor Key Released: " + actor.getOnKeyReleased());
-//                                System.out.println("KeyEvent e: " + e);
                                 if (actor.getOnKeyReleased() != null) {
                                     actor.getOnKeyReleased().handle(e);
                                 }
@@ -48,15 +44,12 @@ public abstract class World extends Pane {
                     newValue.setOnKeyPressed(new EventHandler<KeyEvent>() {
                         @Override
                         public void handle(KeyEvent e) {
-//                            System.out.println("Key Pressed");
-//                            System.out.println(this);
 
                             if (getOnKeyPressed() != null) {
                                 getOnKeyPressed().handle(e);
                             }
 
                             List<Actor> actors = getObjects(Actor.class);
-                            //System.out.println("List Size: " + actors.size());
 
                             for (Actor actor : actors) {
                                 if (actor.getOnKeyPressed() != null) {
@@ -68,9 +61,6 @@ public abstract class World extends Pane {
                 }
             }
         });
-
-        /*setBackground(new Background(new BackgroundImage(new Image("file:img/background.png"), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT)));*/
 
     }
 

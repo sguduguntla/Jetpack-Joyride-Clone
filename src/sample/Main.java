@@ -55,9 +55,9 @@ public class Main extends Application {
     private static Label coinsLabel;
     private Label howToPlayLabel;
 
-    private Label shieldLabel;
+    private Label powerupLabel;
 
-    private int shieldDuration = 20;
+    private int powerupDuration = 20;
 
     private MyWorld world;
 
@@ -146,7 +146,7 @@ public class Main extends Application {
             coinGroup.add(new Coin());
         }
 
-        barry.setImag("barry");
+        barry.setImag("stomper_ground");
         barry.setImage(new Image("file:img/" + barry.getImag() + ".png"));
         powerupBox.setImage(new Image("file:img/powerup_box.png", WORLD_WIDTH / 8, WORLD_HEIGHT / 10, true, true, true));
         zapper.setImage(new Image("file:img/zapper.png", WORLD_WIDTH / 4, WORLD_HEIGHT / 4, true, true, true));
@@ -170,9 +170,12 @@ public class Main extends Application {
                     world.getChildren().remove(howToPlayBox);
                     if (barry.getPowerUp().equals("shield")) {
                         barry.setImag("barry_rising_shield");
+                    } else if (barry.getPowerUp().equals("stomper")) {
+                        barry.setImag("stomper_rising");
                     } else {
                         barry.setImag("barry_rising");
                     }
+
                     barry.setImage(new Image("file:img/" + barry.getImag() + ".png"));
 
                     if (barry.getFalling() && barry.getDy() != 0) {
@@ -190,15 +193,17 @@ public class Main extends Application {
             }
         });
 
-        barry.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            double dy = barry.getDy();
+        barry.setOnKeyReleased(new EventHandler<KeyEvent>()
 
+        {
             @Override
             public void handle(KeyEvent event) {
                 barry.setFalling(true);
 
                 if (barry.getPowerUp().equals("shield")) {
                     barry.setImag("barry_falling_shield");
+                } else if (barry.getPowerUp().equals("stomper")) {
+                    barry.setImag("stomper_ground");
                 } else {
                     barry.setImag("barry_falling");
                 }
@@ -218,70 +223,129 @@ public class Main extends Application {
 
         int numCoins = (int) (Math.random() * 40) + 10;
 
-        for (int i = 0; i < numCoins; i++) {
+        for (
+                int i = 0;
+                i < numCoins; i++)
+
+        {
             world.add(coinGroup.get(i));
             coinGroup.get(i).setX(WORLD_WIDTH + 50);
         }
 
-        world.getChildren().addAll(scoreBox, howToPlayBox);
+        world.getChildren().
 
-        collisionTimeline = new Timeline(new KeyFrame(
+                addAll(scoreBox, howToPlayBox);
+
+        collisionTimeline = new
+
+                Timeline(new KeyFrame(
                 Duration.millis(10),
-                ae -> collisionCheck()));
+
+                ae ->
+
+                        collisionCheck()));
         collisionTimeline.setCycleCount(Animation.INDEFINITE);
         collisionTimeline.play();
 
-        boundaryCheckerTimeline = new Timeline(new KeyFrame(
+        boundaryCheckerTimeline = new
+
+                Timeline(new KeyFrame(
                 Duration.millis(110),
-                ae -> boundarycheck()));
+
+                ae ->
+
+                        boundarycheck()));
         boundaryCheckerTimeline.setCycleCount(Animation.INDEFINITE);
         boundaryCheckerTimeline.play();
 
-        zapperTimeline = new Timeline(new KeyFrame(
+        zapperTimeline = new
+
+                Timeline(new KeyFrame(
                 Duration.millis(2000),
-                ae -> shootZapper()));
+
+                ae ->
+
+                        shootZapper()));
         zapperTimeline.setCycleCount(Animation.INDEFINITE);
         zapperTimeline.play();
 
-        zapper2Timeline = new Timeline(new KeyFrame(
+        zapper2Timeline = new
+
+                Timeline(new KeyFrame(
                 Duration.millis(3500),
-                ae -> shootZapper2()));
+
+                ae ->
+
+                        shootZapper2()));
         zapper2Timeline.setCycleCount(Animation.INDEFINITE);
         zapper2Timeline.play();
 
-        powerupDurationCounterTimeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> updateShieldLabel()));
+        powerupDurationCounterTimeline = new
+
+                Timeline(new KeyFrame(Duration.millis(1000), ae ->
+
+                updatePowerupLabel()));
         powerupDurationCounterTimeline.setCycleCount(Animation.INDEFINITE);
 
-        powerupTimeline = new Timeline(new KeyFrame(
+        powerupTimeline = new
+
+                Timeline(new KeyFrame(
                 Duration.millis(4200),
-                ae -> spawnPowerupBox()));
+
+                ae ->
+
+                        spawnPowerupBox()));
         powerupTimeline.setCycleCount(Animation.INDEFINITE);
         powerupTimeline.play();
 
-        powerupLengthTimeline = new Timeline(new KeyFrame(
+        powerupLengthTimeline = new
+
+                Timeline(new KeyFrame(
                 Duration.millis(10000),
-                ae -> stopPowerup()));
+
+                ae ->
+
+                        stopPowerup()));
         powerupLengthTimeline.setCycleCount(Animation.INDEFINITE);
 
-        missileTimeline = new Timeline(new KeyFrame(
+        missileTimeline = new
+
+                Timeline(new KeyFrame(
                 Duration.millis(7000),
-                ae -> shootMissile()));
+
+                ae ->
+
+                        shootMissile()));
         missileTimeline.setCycleCount(Animation.INDEFINITE);
         missileTimeline.play();
 
-        missileLocationTimeline = new Timeline(new KeyFrame(
+        missileLocationTimeline = new
+
+                Timeline(new KeyFrame(
                 Duration.millis(10),
-                ae -> locateMissile()));
+
+                ae ->
+
+                        locateMissile()));
         missileLocationTimeline.setCycleCount(Animation.INDEFINITE);
         missileLocationTimeline.play();
 
-        coinTimeline = new Timeline(new KeyFrame(
+        coinTimeline = new
+
+                Timeline(new KeyFrame(
                 Duration.millis(4000),
-                ae -> addCoins()));
+
+                ae ->
+
+                        addCoins()));
         coinTimeline.setCycleCount(Animation.INDEFINITE);
         coinTimeline.play();
 
-        scientistTimeLine = new Timeline(new KeyFrame(Duration.millis(4000), ae -> addScientist()));
+        scientistTimeLine = new
+
+                Timeline(new KeyFrame(Duration.millis(4000), ae ->
+
+                addScientist()));
         scientistTimeLine.setCycleCount(Animation.INDEFINITE);
         scientistTimeLine.play();
 
@@ -290,19 +354,34 @@ public class Main extends Application {
     }
 
 
+    public void updatePowerupLabel() {
+        powerupDuration--;
+        if (barry.getPowerUp().equals("shield")) {
+            powerupLabel.setText("Shield Activated: " + powerupDuration + "s");
+        } else if (barry.getPowerUp().equals("stomper")) {
+            powerupLabel.setText("Stomper Activated: " + powerupDuration + "s");
+        } else {
+            scoreBox.getChildren().remove(powerupLabel);
+            powerupTimeline = new
 
-    public void updateShieldLabel() {
-        shieldDuration--;
-        shieldLabel.setText("Shield Activated: " + shieldDuration + "s");
+                    Timeline(new KeyFrame(
+                    Duration.millis(4200),
+
+                    ae ->
+
+                            spawnPowerupBox()));
+            powerupTimeline.setCycleCount(Animation.INDEFINITE);
+
+        }
     }
 
     public void stopPowerup() {
         if (powerupCounter > 0) {
             powerupLengthTimeline.stop();
             powerupDurationCounterTimeline.stop();
-            scoreBox.getChildren().remove(shieldLabel);
+            scoreBox.getChildren().remove(powerupLabel);
             powerupCounter = 0;
-            shieldDuration = 20;
+            powerupDuration = 20;
             barry.setPowerUp("none");
         } else {
             powerupCounter++;
@@ -356,6 +435,7 @@ public class Main extends Application {
             powerupLengthTimeline.stop();
             background.setDx(0);
             background2.setDx(0);
+
             Label endGameLabel = new Label("Game Over");
             endGameLabel.setAlignment(Pos.CENTER);
             endGameLabel.setFont(new Font("Helvetica", 50));
@@ -369,26 +449,38 @@ public class Main extends Application {
             if (intersectingPowerupBox != null) {
 
                 intersectingPowerupBox.setX(WORLD_WIDTH + 50);
-                barry.setPowerUp("shield");
+                int randomPowerup = (int) (Math.random() * 2);
 
-                shieldLabel = new Label("Shield Activated: " + shieldDuration + "s");
-                shieldLabel.setAlignment(Pos.TOP_CENTER);
-                shieldLabel.setFont(new Font("Helvetica", 50));
-                shieldLabel.setTextFill(Color.WHITE);
+                switch (randomPowerup) {
+                    case 0:
+                        barry.setPowerUp("shield");
+                        powerupLabel = new Label("Shield Activated: " + powerupDuration + "s");
+                        break;
+                    case 1:
+                        barry.setPowerUp("stomper");
+                        powerupLabel = new Label("Stomper Activated: " + powerupDuration + "s");
+                        break;
+                    default:
+                        break;
+                }
+
+                powerupLabel.setAlignment(Pos.TOP_CENTER);
+                powerupLabel.setFont(new Font("Helvetica", 50));
+                powerupLabel.setTextFill(Color.WHITE);
 
                 if (background.getDx() >= 18) {
                     background.setDx(background.getDx() - 10);
                     background2.setDx(background2.getDx() - 10);
                 }
 
-                scoreBox.getChildren().add(shieldLabel);
+                scoreBox.getChildren().add(powerupLabel);
                 powerupLengthTimeline.play();
                 powerupDurationCounterTimeline.play();
 
             }
         }
 
-        if (barry.getPowerUp().equals("shield")) {
+        if (!barry.getPowerUp().equals("none")) {
             powerupBox.setX(WORLD_WIDTH + 50);
         }
 
@@ -402,6 +494,8 @@ public class Main extends Application {
 
         background.setDx(background.getDx() - speedIncrement);
         background2.setDx(background2.getDx() - speedIncrement);
+
+        System.out.println(background.getDx());
 
         if (missile.getDx() < 0) {
             missile.setDx(background.getDx() - missileSpeedIncrement);
@@ -439,10 +533,13 @@ public class Main extends Application {
     }
 
     public void boundarycheck() {
+
         if (barry.getY() > WORLD_HEIGHT - barry.getHeight() * 2) {
             barry.setDy(0);
-            barry.setImage(new Image("file:img/barry.png"));
+
             barry.setImag("barry");
+            barry.setImage(new Image("file:img/barry.png"));
+
             if (barry.getPowerUp().equals("shield")) {
                 if (barryImg.equals("barry") || barryImg.equals("barry_shield")) {
                     barry.setImag("barry_shield");
@@ -451,9 +548,16 @@ public class Main extends Application {
                     barry.setImag("barry2_shield");
                     barryImg = "barry_shield";
                 }
-
-                barry.setImage(new Image("file:img/" + barry.getImag() + ".png"));
+            } else if (barry.getPowerUp().equals("stomper")) {
+                if (barryImg.equals("barry") || barryImg.equals("stomper_ground")) {
+                    barry.setImag("stomper_ground");
+                    barryImg = "stomper_ground2";
+                } else {
+                    barry.setImag("stomper_ground2");
+                    barryImg = "stomper_ground";
+                }
             } else {
+
                 if (barryImg.equals("barry")) {
                     barryImg = "barry2";
                 } else {
@@ -461,11 +565,12 @@ public class Main extends Application {
                 }
 
                 barry.setImag(barryImg);
-                barry.setImage(new Image("file:img/" + barry.getImag() + ".png"));
 
             }
-            barry.setLocation(barry.getX(), WORLD_HEIGHT - barry.getHeight() * 2);
 
+            barry.setImage(new Image("file:img/" + barry.getImag() + ".png"));
+
+            barry.setLocation(barry.getX(), WORLD_HEIGHT - barry.getHeight() * 2);
 
         }
         if (barry.getY() <= 1) {

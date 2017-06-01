@@ -62,9 +62,24 @@ public class Barry extends Actor {
         Main.setCoinsLabel(numCoins);
 
         if (!powerUp.equals("shield")) {
-            if (zapper != null || missile != null) {
-                endGame = true;
+            if (powerUp.equals("stomper")) {
+                if (zapper != null) {
+                    zapper.setX(Main.WORLD_WIDTH + 50);
+                    powerUp = "none";
+                }
+
+                if (missile != null) {
+                    missile.setX(Main.WORLD_WIDTH + 50);
+                    powerUp = "none";
+                }
+
+
+            } else {
+                if (zapper != null || missile != null) {
+                    endGame = true;
+                }
             }
+
         }
 
         if (coin != null) {
